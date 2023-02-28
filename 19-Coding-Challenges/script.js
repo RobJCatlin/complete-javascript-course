@@ -7,10 +7,31 @@
 // BMI = mass / height ** 2 = mass / (height * height) (mass in kg and height in meter).
 
 // Your tasks:
-// 1. StoreMark'sandJohn'smassandheightinvariables
-// 2. CalculateboththeirBMIsusingtheformula(youcanevenimplementboth
+// 1. Store Mark's and John's mass and height in variables
+let Mark = {
+  name: "Mark",
+  mass: 78,
+  height: 1.69,
+  BMI: null,
+};
+
+let John = {
+  name: "John",
+  mass: 92,
+  height: 1.95,
+  BMI: null,
+};
+// 2. Calculate both their BMIs using the formula (you can even implement both
 // versions)
-// 3. CreateaBooleanvariable'markHigherBMI'containinginformationabout
+function CompareBMI(user1, user2) {
+  //how can I DRY loop this shit?
+  var user1BMI = user1.mass / (user1.height * user1.height);
+  var user2BMI = user2.mass / (user2.height * user2.height);
+  let markHigherBMI;
+  Mark.BMI = user1BMI;
+  return user1BMI > user2BMI ? (markHigherBMI = true) : null;
+}
+// 3. Create a Boolean variable 'markHigherBMI' containing information about
 // whether Mark has a higher BMI than John.
 
 // Test data:
