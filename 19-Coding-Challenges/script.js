@@ -367,14 +367,13 @@ console.log(print2);
 // Your tasks:
 
 // 1. Select the element with the 'again' class and attach a click event handler
-const resetBtn = document.querySelector('.again');
 
 const reset = () => {
-  document.querySelector('.score').value = 0;
-  document.querySelector('.number').value = 0;
+  document.querySelector('.score').textContent = 0;
+  document.querySelector('.number').textContent = '?';
 };
 
-resetBtn.addEventListener('click', () => {
+document.querySelector('.again').addEventListener('click', () => {
   reset();
 });
 // 2. In the handler function, restore initial values of the 'score' and
