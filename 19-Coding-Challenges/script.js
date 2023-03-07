@@ -1,3 +1,4 @@
+'use strict';
 // Coding Challenge #1
 
 // Mark and John are trying to compare their BMI (Body Mass Index), which is calculated using the formula:
@@ -352,3 +353,34 @@ console.log(print2);
 // Test data:
 // § Data 1: [17, 21, 23]
 // § Data2:[12,5,-5,0,4]
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+// JavaScript in the Browser: DOM and Events
+
+// Coding Challenge #1
+
+// Implement a game rest functionality, so that the player can make a new guess!
+
+// Your tasks:
+
+// 1. Select the element with the 'again' class and attach a click event handler
+const resetBtn = document.querySelector('.again');
+
+const reset = () => {
+  document.querySelector('.score').value = 0;
+  document.querySelector('.number').value = 0;
+};
+
+resetBtn.addEventListener('click', () => {
+  reset();
+});
+// 2. In the handler function, restore initial values of the 'score' and
+// 'secretNumber' variables
+
+// 3. Restore the initial conditions of the message, number, score and guess input
+// fields
+
+// 4. Also restore the original background color(#222)and number width (15rem)
