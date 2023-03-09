@@ -15,13 +15,14 @@ let currentScore = 0;
 
 btnRoll.addEventListener('click', function () {
   const diceRoll = Math.trunc(Math.random() * 6) + 1;
+
+  dice.classList.remove('hidden');
+  dice.src = `dice-${diceRoll}.png`;
+
+  if (diceRoll != 1) {
+    currentScore += diceRoll;
+    current0el.textContent = currentScore;
+  } else {
+    switchPlayer();
+  }
 });
-
-dice.classList.remove('hidden');
-dice.src = `dice-${diceRoll}.png`;
-
-if (diceRoll != 1) {
-  currentScore += diceRoll;
-} else {
-  switchPlayer();
-}
