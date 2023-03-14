@@ -31,6 +31,9 @@ const restaurant = {
   },
 };
 
+const { categories, openingHours } = restaurant;
+console.log(categories, openingHours);
+
 let [main, , secondary] = restaurant.categories;
 console.log(main, secondary);
 
@@ -49,3 +52,5 @@ const nested = [2, 3, [4, 5]];
 // console.log(nested[2][0], nested[2][1]);
 const [i, , [j, k]] = nested;
 console.log(i, j, k);
+
+const arr = [7, 8, 9];
