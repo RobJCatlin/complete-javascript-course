@@ -31,26 +31,51 @@ const restaurant = {
   },
 };
 
+// Destructuring Objects
 const { categories, openingHours } = restaurant;
 console.log(categories, openingHours);
 
-let [main, , secondary] = restaurant.categories;
-console.log(main, secondary);
+// destructuring and renaming the variables
+const {
+  name: restaurantName,
+  openingHours: hours,
+  categories: tags,
+} = restaurant;
 
-[main, secondary] = [secondary, main];
-console.log(main, secondary);
+console.log(restaurantName, hours, tags);
 
-// console.log(restaurant.order(2, 0));
+// setting defaults, setting defaults while changing the variable name
+// this is great for receiving data that when you don't know what it will look like
+const { menu = [], starterMenu: starters = [] } = restaurant;
+console.log(menu, starters);
 
-const [starter, mainCourse] = restaurant.order(2, 0);
-console.log(starter, mainCourse);
+// Mutating variables while destructuring objects
+let a = 111;
+let b = 999;
+const obj = { a: 23, b: 7, c: 14 };
+({ a, b } = obj);
 
-const nested = [2, 3, [4, 5]];
+// Nested Objects
+const { saturday } = restaurant;
+console.log(saturday);
+// Destructuring Arrays
+// let [main, , secondary] = restaurant.categories;
+// console.log(main, secondary);
 
-// const [i, , j] = nested;
-// console.log(i, j);
-// console.log(nested[2][0], nested[2][1]);
-const [i, , [j, k]] = nested;
-console.log(i, j, k);
+// [main, secondary] = [secondary, main];
+// console.log(main, secondary);
 
-const arr = [7, 8, 9];
+// // console.log(restaurant.order(2, 0));
+
+// const [starter, mainCourse] = restaurant.order(2, 0);
+// console.log(starter, mainCourse);
+
+// const nested = [2, 3, [4, 5]];
+
+// // const [i, , j] = nested;
+// // console.log(i, j);
+// // console.log(nested[2][0], nested[2][1]);
+// const [i, , [j, k]] = nested;
+// console.log(i, j, k);
+
+// const arr = [7, 8, 9];
