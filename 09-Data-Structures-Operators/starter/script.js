@@ -29,7 +29,30 @@ const restaurant = {
   order: function (starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
+  orderDelivery: function ({
+    starterIndex = 1,
+    mainIndex = 0,
+    time = '20:00',
+    address,
+  }) {
+    console.log(
+      `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+    );
+  },
 };
+
+// called method with an object of options
+restaurant.orderDelivery({
+  time: '22:30',
+  address: "Lil' Grays",
+  mainIndex: 2,
+  starterIndex: 2,
+});
+
+restaurant.orderDelivery({
+  address: 'Big Grays',
+  starterIndex: 1,
+});
 
 // Destructuring Objects
 const { categories, openingHours } = restaurant;
@@ -56,8 +79,14 @@ const obj = { a: 23, b: 7, c: 14 };
 ({ a, b } = obj);
 
 // Nested Objects
-const { saturday } = restaurant;
-console.log(saturday);
+const {
+  fri: { open: o, close: c },
+} = openingHours;
+
+// console.log(fri); // why did we get fri in the console?
+// console.log(open, close);
+console.log(o, c);
+
 // Destructuring Arrays
 // let [main, , secondary] = restaurant.categories;
 // console.log(main, secondary);
