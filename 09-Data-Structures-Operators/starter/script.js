@@ -88,23 +88,23 @@ const {
 console.log(o, c);
 
 // Destructuring Arrays
-// let [main, , secondary] = restaurant.categories;
-// console.log(main, secondary);
+let [main, , secondary] = restaurant.categories;
+console.log(main, secondary);
 
-// [main, secondary] = [secondary, main];
-// console.log(main, secondary);
+[main, secondary] = [secondary, main];
+console.log(main, secondary);
 
-// // console.log(restaurant.order(2, 0));
+// console.log(restaurant.order(2, 0));
 
-// const [starter, mainCourse] = restaurant.order(2, 0);
-// console.log(starter, mainCourse);
+const [starter, mainCourse] = restaurant.order(2, 0);
+console.log(starter, mainCourse);
 
-// const nested = [2, 3, [4, 5]];
+const nested = [2, 3, [4, 5]];
 
-// // const [i, , j] = nested;
-// // console.log(i, j);
-// // console.log(nested[2][0], nested[2][1]);
-// const [i, , [j, k]] = nested;
-// console.log(i, j, k);
+// const [i, , j] = nested;
+// console.log(i, j);
+// console.log(nested[2][0], nested[2][1]);
+const [i, , [j, k]] = nested;
+console.log(i, j, k);
 
-// const arr = [7, 8, 9];
+const arr = [7, 8, 9];
