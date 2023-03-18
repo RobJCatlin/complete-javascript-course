@@ -108,3 +108,18 @@ const [i, , [j, k]] = nested;
 console.log(i, j, k);
 
 const arr = [7, 8, 9];
+
+//rest operator
+const array = [7, 8, 9];
+const newArray = [5, 6, ...array];
+console.log(newArray);
+
+const newMenu = [...restaurant.mainMenu, 'Gnocci'];
+console.log(newMenu);
+
+//shallow copy of array
+const mainMenuCopy = [...restaurant.mainMenu];
+const menu2 = [...restaurant.mainMenu, ...restaurant.starterMenu];
+console.log(menu2);
+
+//Iterables; arrays, strings, maps, sets. NOT objects.
