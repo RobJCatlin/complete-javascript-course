@@ -39,6 +39,11 @@ const restaurant = {
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
     );
   },
+  orderPasta: function (Ingredient1, Ingredient2, Ingredient3) {
+    console.log(
+      `Here is your pasta, I think you ordered your food with ${Ingredient1}, ${Ingredient2}, and ${Ingredient3}`
+    );
+  },
 };
 
 // called method with an object of options
@@ -123,3 +128,26 @@ const menu2 = [...restaurant.mainMenu, ...restaurant.starterMenu];
 console.log(menu2);
 
 //Iterables; arrays, strings, maps, sets. NOT objects.
+const string = 'Robert';
+console.log(...string);
+
+const ingredients = [
+  // prompt(`Let\'s make pasta! Ingredient 1`),
+  // prompt(`Ingredient 2`),
+  // prompt(`Ingredient 3`),
+];
+
+console.log(ingredients);
+
+restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]);
+restaurant.orderPasta(...ingredients);
+
+const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Guiseppe' };
+console.log('newRestaurant', newRestaurant);
+
+const restaurantCopy = { ...restaurant };
+console.log('restaurantCopy:', restaurantCopy);
+
+restaurantCopy.name = 'Ristorante Roma';
+console.log(restaurantCopy.name);
+console.log(restaurant.name);
