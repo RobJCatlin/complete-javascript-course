@@ -151,3 +151,5 @@ console.log('restaurantCopy:', restaurantCopy);
 restaurantCopy.name = 'Ristorante Roma';
 console.log(restaurantCopy.name);
 console.log(restaurant.name);
+
+console.log('cheat day: 20.03.23');
