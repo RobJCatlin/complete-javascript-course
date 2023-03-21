@@ -59,6 +59,23 @@ restaurant.orderDelivery({
   starterIndex: 1,
 });
 
+// ...SPREAD OPERATOR - because it's on the right of the =
+const testArr = [1, 2, ...[3, 4]];
+console.log(`testArr: ${testArr}`);
+// REST ELEMENT - because it's on the left of the =
+const [e, f, ...others] = [1, 2, 3, 4, 5];
+console.log(e, f, others);
+
+const [pizza, , risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+
+console.log(pizza, risotto, otherFood);
+
+const { weekdays, weekend } = restaurant.openingHours;
+console.log(weekend, ...weekdays);
+
 // Destructuring Objects
 const { categories, openingHours } = restaurant;
 console.log(categories, openingHours);
