@@ -44,6 +44,9 @@ const restaurant = {
       `Here is your pasta, I think you ordered your food with ${Ingredient1}, ${Ingredient2}, and ${Ingredient3}`
     );
   },
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient, otherIngredients);
+  },
 };
 
 // called method with an object of options
@@ -94,6 +97,21 @@ add(1, 2, 3);
 add(5, 6, 7, 8, 9);
 add(2002, 2012, 2017, 2023);
 
+const z = [9, 10, 14, 2009];
+
+add(...z);
+
+const toppings = [
+  'cheese',
+  'mushroom',
+  'pineapple',
+  'pepperoni',
+  'ham',
+  'onion',
+  'jalepeno',
+];
+
+restaurant.orderPizza(...toppings);
 // destructuring and renaming the variables
 const {
   name: restaurantName,
