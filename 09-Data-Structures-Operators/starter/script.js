@@ -59,6 +59,7 @@ restaurant.orderDelivery({
   starterIndex: 1,
 });
 
+// Destructuring
 // ...SPREAD OPERATOR - because it's on the right of the =
 const testArr = [1, 2, ...[3, 4]];
 console.log(`testArr: ${testArr}`);
@@ -70,15 +71,28 @@ const [pizza, , risotto, ...otherFood] = [
   ...restaurant.mainMenu,
   ...restaurant.starterMenu,
 ];
-
 console.log(pizza, risotto, otherFood);
 
-const { weekdays, weekend } = restaurant.openingHours;
-console.log(weekend, ...weekdays);
+// Objects
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(sat, weekdays);
 
 // Destructuring Objects
 const { categories, openingHours } = restaurant;
 console.log(categories, openingHours);
+
+// Functions
+const add = function (...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+  }
+  console.log('sum:', sum);
+};
+
+add(1, 2, 3);
+add(5, 6, 7, 8, 9);
+add(2002, 2012, 2017, 2023);
 
 // destructuring and renaming the variables
 const {
