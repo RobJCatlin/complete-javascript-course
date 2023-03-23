@@ -112,6 +112,7 @@ const toppings = [
 ];
 
 restaurant.orderPizza(...toppings);
+
 // destructuring and renaming the variables
 const {
   name: restaurantName,
@@ -202,3 +203,33 @@ console.log(restaurantCopy.name);
 console.log(restaurant.name);
 
 console.log('cheat day: 20.03.23');
+
+console.log('------ OR ------');
+
+// use ANY data type, return ANY data type, short circuiting
+// OR operator will return the first truthy value of all the operands, or the last item if all the values are falsey
+console.log(3 || 'Rob');
+console.log('' || 'Rob');
+console.log(true || 0);
+console.log(undefined || null);
+
+// restaurant.numGuests = 23;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1);
+// Short circuiting
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2);
+
+console.log('------ AND ------');
+
+// AND operator will return the first falsey value of all the operands, or the last item if all the values are truthy
+console.log(0 && 'Rob');
+console.log(4 && 'Rob');
+
+console.log('Hello' && true && 22 && 'Rob' && 0);
+
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('mushroom', 'ham', 'olives', 'sun dried tomatos');
+}
+
+restaurant.orderPizza && restaurant.orderPizza('cheese', 'spinach', 'egg');
