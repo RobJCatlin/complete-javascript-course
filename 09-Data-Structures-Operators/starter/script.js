@@ -233,3 +233,47 @@ if (restaurant.orderPizza) {
 }
 
 restaurant.orderPizza && restaurant.orderPizza('cheese', 'spinach', 'egg');
+
+console.log('------ nullish coalescing operator ------');
+
+// nullish coalescing operator
+restaurant.numGuests = 0;
+// this wont work as the value of restaurant.numGuests is zero, that's why we would use the nullish coalescing operator
+const guests3 = restaurant.numGuests || 10;
+console.log(guests1);
+
+// nullish values are; null and undefined (not 0 or '')
+const guestCorrect = restaurant.numGuests ?? 10;
+console.log(guestCorrect);
+
+console.log('------ logical assignment operator ------');
+
+const rest1 = {
+  name: 'Capri',
+  // numGuests: 20,
+  numGuests: 0,
+};
+
+const rest2 = {
+  name: 'La Piazza',
+  owner: 'Giovanni Rossi',
+};
+
+// rest1.numGuests = rest1.numGuests || 10;
+// console.log(rest1);
+
+// rest2.numGuests = rest2.numGuests || 10;
+// console.log(rest2);
+
+// OR assignment operator - asigns a value to a variable if that value is falsey
+// rest1.numGuests ||= 10;
+// console.log(`OR assignment operator `, rest1);
+
+// rest2.numGuests ||= 10;
+// console.log(`OR assignment operator `, rest2);
+
+//nullish asignment operator (null or undefined)
+rest1.numGuests ??= 10;
+console.log(`OR assignment operator `, rest1);
+rest2.numGuests ??= 10;
+console.log(`OR assignment operator `, rest2);
