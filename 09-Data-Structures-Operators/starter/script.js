@@ -277,3 +277,5 @@ rest1.numGuests ??= 10;
 console.log(`OR assignment operator `, rest1);
 rest2.numGuests ??= 10;
 console.log(`OR assignment operator `, rest2);
+
+rest2.owner = rest2.owner && `<ANONYMOUS>`;
