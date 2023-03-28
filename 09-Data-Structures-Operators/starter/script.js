@@ -4,50 +4,74 @@
 // const flights =
 //   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
-// // Data needed for first part of the section
-// const restaurant = {
-//   name: 'Classico Italiano',
-//   location: 'Via Angelo Tavanti 23, Firenze, Italy',
-//   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
-//   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
-//   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+const weekdays = ['Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'];
 
-//   openingHours: {
-//     thu: {
-//       open: 12,
-//       close: 22,
-//     },
-//     fri: {
-//       open: 11,
-//       close: 23,
-//     },
-//     sat: {
-//       open: 0, // Open 24 hours
-//       close: 24,
-//     },
-//   },
-//   order: function (starterIndex, mainIndex) {
-//     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
-//   },
-//   orderDelivery: function ({
-//     starterIndex = 1,
-//     mainIndex = 0,
-//     time = '20:00',
-//     address,
-//   }) {
-//     console.log(
-//       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
-//     );
-//   },
-//   orderPasta: function (Ingredient1, Ingredient2, Ingredient3) {
-//     console.log(
-//       `Here is your pasta, I think you ordered your food with ${Ingredient1}, ${Ingredient2}, and ${Ingredient3}`
-//     );
-//   },
-//   orderPizza: function (mainIngredient, ...otherIngredients) {
-//     console.log(mainIngredient, otherIngredients);
-//   },
-// };
+const openingHours = {
+  [weekdays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  [weekdays[4]]: {
+    open: 11,
+    close: 23,
+  },
+  [weekdays[5]]: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
+
+// // Data needed for first part of the section
+const restaurant = {
+  name: 'Classico Italiano',
+  location: 'Via Angelo Tavanti 23, Firenze, Italy',
+  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+  // openingHours: openingHours,
+  //ES6 Enhanced object literals
+  openingHours,
+
+  // order: function (starterIndex, mainIndex) {
+  //   return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  // },
+
+  //ES6 Enhanced object literals - you can omit the semi-colon and function keyword.
+  order(starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  },
+  orderDelivery({ starterIndex = 1, mainIndex = 0, time = '20:00', address }) {
+    console.log(
+      `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+    );
+  },
+  orderPasta(Ingredient1, Ingredient2, Ingredient3) {
+    console.log(
+      `Here is your pasta, I think you ordered your food with ${Ingredient1}, ${Ingredient2}, and ${Ingredient3}`
+    );
+  },
+  orderPizza(mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient, otherIngredients);
+  },
+};
+
+console.log(restaurant);
+
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+// for (const item of menu) console.log(item);
+
+for (const item of menu.entries()) {
+  console.log(`Oldschool way of doing For Of loop: ${item}`);
+}
+
+// new way of doing For Of loop with destructuring
+for (const [i, item] of menu.entries()) {
+  // console.log(i, item);
+  // console.log(`${item[0] + 1}: ${item[1]}`);
+  console.log(`${i + 1}: ${item}`);
+}
 
 // // called method with an object of options
 // restaurant.orderDelivery({
@@ -334,60 +358,66 @@ const game = {
 // Suppose we get data from a web service about a certain game ('game' variable on next page). In this challenge we're gonna work with that data.
 // Your tasks:
 
-// 1. Create one player array for each team (variables 'players1' and 'players2')
-const [players1, players2] = game.players;
-console.log(players1, players2);
+// // 1. Create one player array for each team (variables 'players1' and 'players2')
+// const [players1, players2] = game.players;
+// console.log(players1, players2);
 
-// 2. The first player in any player array is the goalkeeper and the others are field  players. For Bayern Munich (team 1) create one variable ('gk') with the goalkeeper's name, and one array ('fieldPlayers') with all the remaining 10 field players
-const [gk, ...fieldPlayers] = players1;
-console.log(gk, fieldPlayers);
+// // 2. The first player in any player array is the goalkeeper and the others are field  players. For Bayern Munich (team 1) create one variable ('gk') with the goalkeeper's name, and one array ('fieldPlayers') with all the remaining 10 field players
+// const [gk, ...fieldPlayers] = players1;
+// console.log(gk, fieldPlayers);
 
-// 3. Create an array 'allPlayers' containing all players of both teams (22 players)
-const allPlayers = [...players1, ...players2];
-console.log(allPlayers);
+// // 3. Create an array 'allPlayers' containing all players of both teams (22 players)
+// const allPlayers = [...players1, ...players2];
+// console.log(allPlayers);
 
-// 4. During the game, Bayern Munich (team1) used 3 substitute players. So create a new  array ('players1Final') containing all the original team1 players plus 'Thiago', 'Coutinho' and 'Perisic'
-const players1Final = [...game.players[0], 'Thiago', 'Coutinho', 'Perisic'];
-console.log(players1Final);
-// 5. Based on the game.odds object, create one variable for each odd (called 'team1', 'draw' and 'team2')
-const {
-  odds: { team1, x: draw, team2 },
-} = game;
-console.log(team1, draw, team2);
+// // 4. During the game, Bayern Munich (team1) used 3 substitute players. So create a new  array ('players1Final') containing all the original team1 players plus 'Thiago', 'Coutinho' and 'Perisic'
+// const players1Final = [...game.players[0], 'Thiago', 'Coutinho', 'Perisic'];
+// console.log(players1Final);
 
-// 6. Write a function ('printGoals') that receives an arbitrary number of player names (not an array) and prints each of them to the console, along with the number of goals that were scored in total (number of player names passed in)
-const printGoals = (...playerNames) => {
-  console.log(playerNames);
-};
+// // 5. Based on the game.odds object, create one variable for each odd (called 'team1', 'draw' and 'team2')
+// const {
+//   odds: { team1, x: draw, team2 },
+// } = game;
+// console.log(team1, draw, team2);
 
-printGoals('Rob', 'Tom', 'Max');
-// 7. The team with the lower odd is more likely to win. Print to the consolewhich team is more likely to win, without using an if/else statement or the ternary operator.
-// Test data for 6.: First, use players 'Davies', 'Muller', 'Lewandowski' and 'Kimmich'. Then, call the function again with players from game.scored
+// // 6. Write a function ('printGoals') that receives an arbitrary number of player names (not an array) and prints each of them to the console, along with the number of goals that were scored in total (number of player names passed in)
+// const printGoals = (...playerNames) => {
+//   console.log(`${playerNames}, Total goals scored: ${playerNames.length}`);
+// };
 
-// 1. Loop over the game.scored array and print each player name to the console, along with the goal number (Example: "Goal 1: Lewandowski")
-game.scored.forEach((item, i) => {
-  console.log(`Goal #${i + 1} scored by ${item}`);
-});
+// printGoals('Rob', 'Tom', 'Max');
+// printGoals(...game.scored);
 
-// 2. Use a loop to calculate the average odd and log it to the console (We already studied how to calculate averages, you can go check if you don't remember)
-let sum = 0;
-Object.keys(game.odds).forEach(item => {
-  sum += game.odds[item];
-});
-sum / game.odds.length;
-console.log(`Average odds: ${sum}`);
-// 3. Print the 3 odds to the console, but in a nice formatted way, exaclty like this:
-//       Odd of victory Bayern Munich: 1.33
-//       Odd of draw: 3.25
-//       Odd of victory Borrussia Dortmund: 6.5
-// console.log(game.odds);
-let message = '';
+// // 7. The team with the lower odd is more likely to win. Print to the console which team is more likely to win, without using an if/else statement or the ternary operator.
+// team1 < team2 && console.log(`Team 1 is more likey to win`);
+// team1 > team2 && console.log(`Team 2 is more likey to win`);
 
-message += `Odds of victory - ${game.team1}: ${game.odds.team1} \n`;
-message += `Odds of a draw - ${game.odds.x} \n`;
-message += `Odds of victory - ${game.team2}: ${game.odds.team2} \n`;
+// // Test data for 6.: First, use players 'Davies', 'Muller', 'Lewandowski' and 'Kimmich'. Then, call the function again with players from game.scored
 
-console.log(message);
+// // 1. Loop over the game.scored array and print each player name to the console, along with the goal number (Example: "Goal 1: Lewandowski")
+// game.scored.forEach((item, i) => {
+//   console.log(`Goal #${i + 1} scored by ${item}`);
+// });
+
+// // 2. Use a loop to calculate the average odd and log it to the console (We already studied how to calculate averages, you can go check if you don't remember)
+// let sum = 0;
+// Object.keys(game.odds).forEach(item => {
+//   sum += game.odds[item];
+// });
+// sum / game.odds.length;
+// console.log(`Average odds: ${sum}`);
+// // 3. Print the 3 odds to the console, but in a nice formatted way, exaclty like this:
+// //       Odd of victory Bayern Munich: 1.33
+// //       Odd of draw: 3.25
+// //       Odd of victory Borrussia Dortmund: 6.5
+// // console.log(game.odds);
+// let message = '';
+
+// message += `Odds of victory - ${game.team1}: ${game.odds.team1} \n`;
+// message += `Odds of a draw - ${game.odds.x} \n`;
+// message += `Odds of victory - ${game.team2}: ${game.odds.team2} \n`;
+
+// console.log(message);
 
 // Get the team names directly from the game object, don't hardcode them (except for "draw"). HINT: Note how the odds and the game objects have the same property names 😉
 
@@ -398,23 +428,14 @@ console.log(message);
 //         Lewandowski: 2
 //       }
 
-// const object1 = {
-//   a: 'somestring',
-//   b: 42,
+// for (const [key, value] of Object.entries(game.odds)) {
+//   console.log(`${key}: ${value}`);
+// }
+
+// const scorers = {
+//   //loop over both arrays
+//   //make an object from that?
 // };
-
-for (const [key, value] of Object.entries(game)) {
-  console.log(`${key}: ${value}`);
-}
-
-// Expected output:
-// "a: somestring"
-// "b: 42"
-
-const scorers = {
-  //loop over both arrays
-  //make an object from that?
-};
 
 // // 1.
 // for (const [i, player] of game.scored.entries())
