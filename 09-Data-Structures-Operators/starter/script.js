@@ -4,7 +4,7 @@
 // const flights =
 //   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
-const weekdays = ['Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'];
+const weekdays = ['mon', 'tue', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'];
 
 const openingHours = {
   [weekdays[3]]: {
@@ -20,6 +20,8 @@ const openingHours = {
     close: 24,
   },
 };
+
+console.log(openingHours.weekdays[0]);
 
 // // Data needed for first part of the section
 const restaurant = {
@@ -56,22 +58,26 @@ const restaurant = {
   },
 };
 
-console.log(restaurant);
+if (restaurant.openingHours.mon) console.log(restaurant.openingHours.mon.open);
 
-const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+if (restaurant.openingHours.fri) console.log(restaurant.openingHours.fri.open);
 
-// for (const item of menu) console.log(item);
+// console.log(restaurant);
 
-for (const item of menu.entries()) {
-  console.log(`Oldschool way of doing For Of loop: ${item}`);
-}
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
-// new way of doing For Of loop with destructuring
-for (const [i, item] of menu.entries()) {
-  // console.log(i, item);
-  // console.log(`${item[0] + 1}: ${item[1]}`);
-  console.log(`${i + 1}: ${item}`);
-}
+// // for (const item of menu) console.log(item);
+
+// for (const item of menu.entries()) {
+//   console.log(`Oldschool way of doing For Of loop: ${item}`);
+// }
+
+// // new way of doing For Of loop with destructuring
+// for (const [i, item] of menu.entries()) {
+//   // console.log(i, item);
+//   // console.log(`${item[0] + 1}: ${item[1]}`);
+//   console.log(`${i + 1}: ${item}`);
+// }
 
 // // called method with an object of options
 // restaurant.orderDelivery({
@@ -313,46 +319,46 @@ for (const [i, item] of menu.entries()) {
 ///////////////////////////////////////
 // Coding Challenge #2 - Let's continue with our football betting app!
 
-const game = {
-  team1: 'Bayern Munich',
-  team2: 'Borrussia Dortmund',
-  players: [
-    [
-      'Neuer',
-      'Pavard',
-      'Martinez',
-      'Alaba',
-      'Davies',
-      'Kimmich',
-      'Goretzka',
-      'Coman',
-      'Muller',
-      'Gnarby',
-      'Lewandowski',
-    ],
-    [
-      'Burki',
-      'Schulz',
-      'Hummels',
-      'Akanji',
-      'Hakimi',
-      'Weigl',
-      'Witsel',
-      'Hazard',
-      'Brandt',
-      'Sancho',
-      'Gotze',
-    ],
-  ],
-  score: '4:0',
-  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
-  date: 'Nov 9th, 2037',
-  odds: {
-    team1: 1.33,
-    x: 3.25,
-    team2: 6.5,
-  },
-};
+// const game = {
+//   team1: 'Bayern Munich',
+//   team2: 'Borrussia Dortmund',
+//   players: [
+//     [
+//       'Neuer',
+//       'Pavard',
+//       'Martinez',
+//       'Alaba',
+//       'Davies',
+//       'Kimmich',
+//       'Goretzka',
+//       'Coman',
+//       'Muller',
+//       'Gnarby',
+//       'Lewandowski',
+//     ],
+//     [
+//       'Burki',
+//       'Schulz',
+//       'Hummels',
+//       'Akanji',
+//       'Hakimi',
+//       'Weigl',
+//       'Witsel',
+//       'Hazard',
+//       'Brandt',
+//       'Sancho',
+//       'Gotze',
+//     ],
+//   ],
+//   score: '4:0',
+//   scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+//   date: 'Nov 9th, 2037',
+//   odds: {
+//     team1: 1.33,
+//     x: 3.25,
+//     team2: 6.5,
+//   },
+// };
 
 // We're building a football betting app (soccer for my American friends 😅)!
 // Suppose we get data from a web service about a certain game ('game' variable on next page). In this challenge we're gonna work with that data.
