@@ -4,24 +4,22 @@
 // const flights =
 //   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
-const weekdays = ['mon', 'tue', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'];
+const weekdays = ['Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'];
 
 const openingHours = {
-  [weekdays[3]]: {
+  thurs: {
     open: 12,
     close: 22,
   },
-  [weekdays[4]]: {
+  fri: {
     open: 11,
     close: 23,
   },
-  [weekdays[5]]: {
+  sat: {
     open: 0, // Open 24 hours
     close: 24,
   },
 };
-
-console.log(openingHours.weekdays[0]);
 
 // // Data needed for first part of the section
 const restaurant = {
@@ -31,7 +29,9 @@ const restaurant = {
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
+  //Oldschoolway of doing
   // openingHours: openingHours,
+
   //ES6 Enhanced object literals
   openingHours,
 
@@ -58,9 +58,19 @@ const restaurant = {
   },
 };
 
-if (restaurant.openingHours.mon) console.log(restaurant.openingHours.mon.open);
+console.log(restaurant.openingHours);
 
-if (restaurant.openingHours.fri) console.log(restaurant.openingHours.fri.open);
+if (restaurant.openingHours && restaurant.openingHours.mon)
+  console.log(restaurant.openingHours.mon.open);
+
+//With optional chaining ?.
+if (restaurant?.openingHours?.mon)
+  console.log(restaurant.openingHours.mon.open);
+
+const days = ['Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'];
+
+for (const day of days)
+  if (restaurant.openingHours[day]) console.log(`Open on: `, day);
 
 // console.log(restaurant);
 
