@@ -483,3 +483,5 @@ for (const day of days) {
 // for (const player of game.scored) {
 //   scorers[player] ? scorers[player]++ : (scorers[player] = 1);
 // }
+
+// console.log('Cheat day: 01/04/23');
