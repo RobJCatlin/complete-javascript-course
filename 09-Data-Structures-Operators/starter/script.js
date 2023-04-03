@@ -76,6 +76,24 @@ for (const day of days) {
   console.log(`On ${day} we open at ${open}`);
 }
 
+console.log('------ methods ------');
+
+console.log(restaurant.order?.(0, 1) ?? `Method doesn't exist`);
+console.log(restaurant.orderRisotto?.(0, 1) ?? `Method doesn't exist`);
+
+console.log('------ arrays ------');
+
+const users = [
+  {
+    name: `Rob`,
+    email: `rob@bobobob.com`,
+  },
+];
+
+console.log(users[0]?.name);
+// we use optional chaining with the nullish coalescing operator so we can actually do something when we don't get a value from the object or arrayon the right hand side
+console.log(users[2]?.name ?? `Nah bro, that's not a thing`);
+
 // console.log(restaurant);
 
 // const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
