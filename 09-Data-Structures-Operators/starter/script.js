@@ -4,18 +4,18 @@
 // const flights =
 //   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
-const weekdays = ['Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'];
+const weekdays = ['mon', 'tue', 'wed', 'thurs', 'fri', 'sat', 'sun'];
 
 const openingHours = {
-  thurs: {
+  [weekdays[3]]: {
     open: 12,
     close: 22,
   },
-  fri: {
+  [weekdays[4]]: {
     open: 11,
     close: 23,
   },
-  sat: {
+  [weekdays[5]]: {
     open: 0, // Open 24 hours
     close: 24,
   },
@@ -58,7 +58,7 @@ const restaurant = {
   },
 };
 
-console.log(restaurant.openingHours);
+// console.log(restaurant.openingHours);
 
 if (restaurant.openingHours && restaurant.openingHours.mon)
   console.log(restaurant.openingHours.mon.open);
@@ -67,11 +67,12 @@ if (restaurant.openingHours && restaurant.openingHours.mon)
 if (restaurant?.openingHours?.mon)
   console.log(restaurant.openingHours.mon.open);
 
-const days = ['Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'];
+const days = ['mon', 'tue', 'wed', 'thurs', 'fri', 'sat', 'sun'];
 
 for (const day of days) {
-  console.log(restaurant.openingHours);
-  const open = restaurant.openingHours[day]?.open;
+  // console.log(restaurant.openingHours);
+  // console.log(restaurant.openingHours[day]);
+  const open = restaurant.openingHours[day]?.open ?? 'Closed';
   console.log(`On ${day} we open at ${open}`);
 }
 
