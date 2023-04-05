@@ -94,6 +94,16 @@ console.log(users[0]?.name);
 // we use optional chaining with the nullish coalescing operator so we can actually do something when we don't get a value from the object or arrayon the right hand side
 console.log(users[2]?.name ?? `Nah bro, that's not a thing`);
 
+const values = Object.values(openingHours);
+console.log(values);
+
+const entries = Object.entries(openingHours);
+// console.log(entries);
+
+for (const [key, { open, close }] of entries) {
+  console.log(`On ${key}, we open at ${open}, and close at ${close}`);
+}
+
 // console.log(restaurant);
 
 // const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
