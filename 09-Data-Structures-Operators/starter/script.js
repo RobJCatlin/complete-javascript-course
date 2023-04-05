@@ -4,105 +4,105 @@
 // const flights =
 //   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
-const weekdays = ['mon', 'tue', 'wed', 'thurs', 'fri', 'sat', 'sun'];
+// const weekdays = ['mon', 'tue', 'wed', 'thurs', 'fri', 'sat', 'sun'];
 
-const openingHours = {
-  [weekdays[3]]: {
-    open: 12,
-    close: 22,
-  },
-  [weekdays[4]]: {
-    open: 11,
-    close: 23,
-  },
-  [weekdays[5]]: {
-    open: 0, // Open 24 hours
-    close: 24,
-  },
-};
+// const openingHours = {
+//   [weekdays[3]]: {
+//     open: 12,
+//     close: 22,
+//   },
+//   [weekdays[4]]: {
+//     open: 11,
+//     close: 23,
+//   },
+//   [weekdays[5]]: {
+//     open: 0, // Open 24 hours
+//     close: 24,
+//   },
+// };
 
-// // Data needed for first part of the section
-const restaurant = {
-  name: 'Classico Italiano',
-  location: 'Via Angelo Tavanti 23, Firenze, Italy',
-  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
-  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
-  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+// // // Data needed for first part of the section
+// const restaurant = {
+//   name: 'Classico Italiano',
+//   location: 'Via Angelo Tavanti 23, Firenze, Italy',
+//   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+//   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+//   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-  //Oldschoolway of doing
-  // openingHours: openingHours,
+//   //Oldschoolway of doing
+//   // openingHours: openingHours,
 
-  //ES6 Enhanced object literals
-  openingHours,
+//   //ES6 Enhanced object literals
+//   openingHours,
 
-  // order: function (starterIndex, mainIndex) {
-  //   return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
-  // },
+//   // order: function (starterIndex, mainIndex) {
+//   //   return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+//   // },
 
-  //ES6 Enhanced object literals - you can omit the semi-colon and function keyword.
-  order(starterIndex, mainIndex) {
-    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
-  },
-  orderDelivery({ starterIndex = 1, mainIndex = 0, time = '20:00', address }) {
-    console.log(
-      `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
-    );
-  },
-  orderPasta(Ingredient1, Ingredient2, Ingredient3) {
-    console.log(
-      `Here is your pasta, I think you ordered your food with ${Ingredient1}, ${Ingredient2}, and ${Ingredient3}`
-    );
-  },
-  orderPizza(mainIngredient, ...otherIngredients) {
-    console.log(mainIngredient, otherIngredients);
-  },
-};
+//   //ES6 Enhanced object literals - you can omit the semi-colon and function keyword.
+//   order(starterIndex, mainIndex) {
+//     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+//   },
+//   orderDelivery({ starterIndex = 1, mainIndex = 0, time = '20:00', address }) {
+//     console.log(
+//       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+//     );
+//   },
+//   orderPasta(Ingredient1, Ingredient2, Ingredient3) {
+//     console.log(
+//       `Here is your pasta, I think you ordered your food with ${Ingredient1}, ${Ingredient2}, and ${Ingredient3}`
+//     );
+//   },
+//   orderPizza(mainIngredient, ...otherIngredients) {
+//     console.log(mainIngredient, otherIngredients);
+//   },
+// };
 
-// console.log(restaurant.openingHours);
+// // console.log(restaurant.openingHours);
 
-if (restaurant.openingHours && restaurant.openingHours.mon)
-  console.log(restaurant.openingHours.mon.open);
+// if (restaurant.openingHours && restaurant.openingHours.mon)
+//   console.log(restaurant.openingHours.mon.open);
 
-//With optional chaining ?.
-if (restaurant?.openingHours?.mon)
-  console.log(restaurant.openingHours.mon.open);
+// //With optional chaining ?.
+// if (restaurant?.openingHours?.mon)
+//   console.log(restaurant.openingHours.mon.open);
 
-const days = ['mon', 'tue', 'wed', 'thurs', 'fri', 'sat', 'sun'];
+// const days = ['mon', 'tue', 'wed', 'thurs', 'fri', 'sat', 'sun'];
 
-for (const day of days) {
-  // console.log(restaurant.openingHours);
-  // console.log(restaurant.openingHours[day]);
-  const open = restaurant.openingHours[day]?.open ?? 'Closed';
-  console.log(`On ${day} we open at ${open}`);
-}
+// for (const day of days) {
+//   // console.log(restaurant.openingHours);
+//   // console.log(restaurant.openingHours[day]);
+//   const open = restaurant.openingHours[day]?.open ?? 'Closed';
+//   console.log(`On ${day} we open at ${open}`);
+// }
 
-console.log('------ methods ------');
+// console.log('------ methods ------');
 
-console.log(restaurant.order?.(0, 1) ?? `Method doesn't exist`);
-console.log(restaurant.orderRisotto?.(0, 1) ?? `Method doesn't exist`);
+// console.log(restaurant.order?.(0, 1) ?? `Method doesn't exist`);
+// console.log(restaurant.orderRisotto?.(0, 1) ?? `Method doesn't exist`);
 
-console.log('------ arrays ------');
+// console.log('------ arrays ------');
 
-const users = [
-  {
-    name: `Rob`,
-    email: `rob@bobobob.com`,
-  },
-];
+// const users = [
+//   {
+//     name: `Rob`,
+//     email: `rob@bobobob.com`,
+//   },
+// ];
 
-console.log(users[0]?.name);
-// we use optional chaining with the nullish coalescing operator so we can actually do something when we don't get a value from the object or arrayon the right hand side
-console.log(users[2]?.name ?? `Nah bro, that's not a thing`);
+// console.log(users[0]?.name);
+// // we use optional chaining with the nullish coalescing operator so we can actually do something when we don't get a value from the object or arrayon the right hand side
+// console.log(users[2]?.name ?? `Nah bro, that's not a thing`);
 
-const values = Object.values(openingHours);
-console.log(values);
+// const values = Object.values(openingHours);
+// console.log(values);
 
-const entries = Object.entries(openingHours);
-// console.log(entries);
+// const entries = Object.entries(openingHours);
+// // console.log(entries);
 
-for (const [key, { open, close }] of entries) {
-  console.log(`On ${key}, we open at ${open}, and close at ${close}`);
-}
+// for (const [key, { open, close }] of entries) {
+//   console.log(`On ${key}, we open at ${open}, and close at ${close}`);
+// }
 
 // console.log(restaurant);
 
@@ -361,46 +361,46 @@ for (const [key, { open, close }] of entries) {
 ///////////////////////////////////////
 // Coding Challenge #2 - Let's continue with our football betting app!
 
-// const game = {
-//   team1: 'Bayern Munich',
-//   team2: 'Borrussia Dortmund',
-//   players: [
-//     [
-//       'Neuer',
-//       'Pavard',
-//       'Martinez',
-//       'Alaba',
-//       'Davies',
-//       'Kimmich',
-//       'Goretzka',
-//       'Coman',
-//       'Muller',
-//       'Gnarby',
-//       'Lewandowski',
-//     ],
-//     [
-//       'Burki',
-//       'Schulz',
-//       'Hummels',
-//       'Akanji',
-//       'Hakimi',
-//       'Weigl',
-//       'Witsel',
-//       'Hazard',
-//       'Brandt',
-//       'Sancho',
-//       'Gotze',
-//     ],
-//   ],
-//   score: '4:0',
-//   scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
-//   date: 'Nov 9th, 2037',
-//   odds: {
-//     team1: 1.33,
-//     x: 3.25,
-//     team2: 6.5,
-//   },
-// };
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnarby',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
 
 // We're building a football betting app (soccer for my American friends 😅)!
 // Suppose we get data from a web service about a certain game ('game' variable on next page). In this challenge we're gonna work with that data.
@@ -409,25 +409,37 @@ for (const [key, { open, close }] of entries) {
 // // 1. Create one player array for each team (variables 'players1' and 'players2')
 // const [players1, players2] = game.players;
 // console.log(players1, players2);
+const [players1, players2] = game.players;
+console.log(players1, players2);
 
 // // 2. The first player in any player array is the goalkeeper and the others are field  players. For Bayern Munich (team 1) create one variable ('gk') with the goalkeeper's name, and one array ('fieldPlayers') with all the remaining 10 field players
 // const [gk, ...fieldPlayers] = players1;
 // console.log(gk, fieldPlayers);
+const [gk, ...fieldPlayers] = players1;
+console.log(gk, fieldPlayers);
 
 // // 3. Create an array 'allPlayers' containing all players of both teams (22 players)
 // const allPlayers = [...players1, ...players2];
 // console.log(allPlayers);
+const allPlayers = [...players1, ...players2];
+console.log(allPlayers);
 
 // // 4. During the game, Bayern Munich (team1) used 3 substitute players. So create a new  array ('players1Final') containing all the original team1 players plus 'Thiago', 'Coutinho' and 'Perisic'
 // const players1Final = [...game.players[0], 'Thiago', 'Coutinho', 'Perisic'];
 // console.log(players1Final);
+const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+console.log(players1Final);
 
+const [team1, draw, team2] = game.odds;
+console.log(team1, draw, team2);
 // // 5. Based on the game.odds object, create one variable for each odd (called 'team1', 'draw' and 'team2')
 // const {
 //   odds: { team1, x: draw, team2 },
 // } = game;
 // console.log(team1, draw, team2);
-
+const printGoals = function (...playerNames) {
+  console.log();
+};
 // // 6. Write a function ('printGoals') that receives an arbitrary number of player names (not an array) and prints each of them to the console, along with the number of goals that were scored in total (number of player names passed in)
 // const printGoals = (...playerNames) => {
 //   console.log(`${playerNames}, Total goals scored: ${playerNames.length}`);
