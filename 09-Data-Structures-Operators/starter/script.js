@@ -430,16 +430,18 @@ console.log(allPlayers);
 const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
 console.log(players1Final);
 
-const [team1, draw, team2] = game.odds;
-console.log(team1, draw, team2);
+// const [team1, draw, team2] = game.odds;
+// console.log(team1, draw, team2);
 // // 5. Based on the game.odds object, create one variable for each odd (called 'team1', 'draw' and 'team2')
 // const {
 //   odds: { team1, x: draw, team2 },
 // } = game;
 // console.log(team1, draw, team2);
 const printGoals = function (...playerNames) {
-  console.log();
+  console.log(...playerNames);
 };
+
+printGoals('rob', 'tom');
 // // 6. Write a function ('printGoals') that receives an arbitrary number of player names (not an array) and prints each of them to the console, along with the number of goals that were scored in total (number of player names passed in)
 // const printGoals = (...playerNames) => {
 //   console.log(`${playerNames}, Total goals scored: ${playerNames.length}`);
