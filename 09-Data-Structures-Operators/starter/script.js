@@ -438,10 +438,11 @@ console.log(players1Final);
 // } = game;
 // console.log(team1, draw, team2);
 const printGoals = function (...playerNames) {
-  console.log(...playerNames);
+  console.log(`${playerNames}, Total goals scored ${playerNames.length}.`);
 };
 
 printGoals('rob', 'tom');
+printGoals(...game.scored);
 // // 6. Write a function ('printGoals') that receives an arbitrary number of player names (not an array) and prints each of them to the console, along with the number of goals that were scored in total (number of player names passed in)
 // const printGoals = (...playerNames) => {
 //   console.log(`${playerNames}, Total goals scored: ${playerNames.length}`);
