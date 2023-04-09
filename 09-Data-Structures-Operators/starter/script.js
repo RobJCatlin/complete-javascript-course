@@ -443,6 +443,8 @@ const printGoals = function (...playerNames) {
 
 printGoals('rob', 'tom');
 printGoals(...game.scored);
+
+// console.log('cheat day: 09.04.23');
 // // 6. Write a function ('printGoals') that receives an arbitrary number of player names (not an array) and prints each of them to the console, along with the number of goals that were scored in total (number of player names passed in)
 // const printGoals = (...playerNames) => {
 //   console.log(`${playerNames}, Total goals scored: ${playerNames.length}`);
