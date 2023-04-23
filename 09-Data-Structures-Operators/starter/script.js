@@ -584,3 +584,12 @@ const staff = ['Waiter', 'Manager', 'Cleaner', 'Waiter', 'Chef', 'Chef'];
 //turn set into an array
 const staffUnique = [...new Set(staff)];
 console.log(staffUnique);
+console.log(
+  new Set(['Waiter', 'Manager', 'Cleaner', 'Waiter', 'Chef', 'Chef']).size
+);
+
+console.log('------ maps ------');
+
+const restaurant = new Map();
+restaurant.set('name', "Rob's Place");
+console.log(restaurant);
