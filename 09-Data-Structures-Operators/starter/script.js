@@ -553,55 +553,46 @@
 // console.log('Cheat day: 01/04/23');
 // console.log('Cheat day: 02/04/23');
 
-console.log('------ sets ------');
+// console.log('------ sets ------');
 
-const orderSet = new Set([
-  'Pizza',
-  'Pasta',
-  'Pasta',
-  'Risotto',
-  'Pizza',
-  'Pasta',
-]);
+// const orderSet = new Set([
+//   'Pizza',
+//   'Pasta',
+//   'Pasta',
+//   'Risotto',
+//   'Pizza',
+//   'Pasta',
+// ]);
 
-console.log(orderSet);
-console.log(new Set('Robert'));
-console.log(orderSet.size);
-console.log(orderSet.has('Pizza'));
-console.log(orderSet.has('pizza'));
-console.log(orderSet.has('Bread'));
-orderSet.add('Garlic Bread');
-orderSet.add('Garlic Bread');
-console.log(orderSet);
-orderSet.delete('Risotto');
-console.log(orderSet);
+// console.log(orderSet);
+// console.log(new Set('Robert'));
+// console.log(orderSet.size);
+// console.log(orderSet.has('Pizza'));
+// console.log(orderSet.has('pizza'));
+// console.log(orderSet.has('Bread'));
+// orderSet.add('Garlic Bread');
+// orderSet.add('Garlic Bread');
+// console.log(orderSet);
+// orderSet.delete('Risotto');
+// console.log(orderSet);
 
-for (const order of orderSet) console.log(order);
+// for (const order of orderSet) console.log(order);
 
-//example
-const staff = ['Waiter', 'Manager', 'Cleaner', 'Waiter', 'Chef', 'Chef'];
-// const staffUnique = new Set(staff);
-//turn set into an array
-const staffUnique = [...new Set(staff)];
-console.log(staffUnique);
-console.log(
-  new Set(['Waiter', 'Manager', 'Cleaner', 'Waiter', 'Chef', 'Chef']).size
-);
+// //example
+// const staff = ['Waiter', 'Manager', 'Cleaner', 'Waiter', 'Chef', 'Chef'];
+// // const staffUnique = new Set(staff);
+// //turn set into an array
+// const staffUnique = [...new Set(staff)];
+// console.log(staffUnique);
+// console.log(
+//   new Set(['Waiter', 'Manager', 'Cleaner', 'Waiter', 'Chef', 'Chef']).size
+// );
 
-console.log('------ maps ------');
+// console.log('------ maps ------');
 
-const restaurant = new Map();
-restaurant.set('name', "Rob's Place");
-console.log(restaurant);
-
-// Coding Challenge #3 - Let's continue with our football betting app!
-//This time, we have a map called 'gameEvents' (see below) with a log of the events that happened during the game. The values are the events themselves, and the keys are the minutes in which each event happened (a football game has 90 minutes plus some extra time).
-// Your tasks:
-// 1. Createanarray'events'ofthedifferentgameeventsthathappened(no duplicates)
-// 2. Afterthegamehasfinished,iswasfoundthattheyellowcardfromminute64 was unfair. So remove this event from the game events log.
-// 3. Computeandlogthefollowingstringtotheconsole:"Aneventhappened,on average, every 9 minutes" (keep in mind that a game has 90 minutes)
-// 4. Loopover'gameEvents'andlogeachelementtotheconsole,marking whether it's in the first half or second half (after 45 min) of the game, like this:
-// [FIRST HALF] 17: ⚽   GOAL
+// const restaurant = new Map();
+// restaurant.set('name', "Rob's Place");
+// console.log(restaurant);
 
 const gameEvents = new Map([
   [17, '⚽ GOAL'],
@@ -616,3 +607,31 @@ const gameEvents = new Map([
   [80, '⚽ GOAL'],
   [92, '🔶 Yellow card'],
 ]);
+
+// Coding Challenge #3 - Let's continue with our football betting app!
+
+//This time, we have a map called 'gameEvents' (see above) with a log of the events that happened during the game. The values are the events themselves, and the keys are the minutes in which each event happened (a football game has 90 minutes plus some extra time).
+
+// Your tasks:
+
+// 1. Create an array 'events' of the different game events that happened (no duplicates)
+const events = [...new Set(gameEvents.values())];
+console.log(events);
+
+// 2. After the game has finished, is was found that the yellow card from minute 64 was unfair. So remove this event from the game events log.
+gameEvents.delete(64);
+
+// 3. Compute and log the following string to the console: "An event happened, on average, every 9 minutes" (keep in mind that a game has 90 minutes)
+const time = [...gameEvents.keys()].pop();
+
+console.log(
+  `An event happened, on average, every ${time / gameEvents.size} minutes`
+);
+
+// 4. Loop over 'gameEvents' and log each element to the console, marking whether it's in the first half or second half (after 45 min) of the game, like this:
+// [FIRST HALF] 17: ⚽   GOAL
+gameEvents.forEach((item, index) => {
+  index <= 45
+    ? console.log(`[FIRST HALF] - ${index}: ${item}`)
+    : console.log(`[SECOND HALF] - ${index}: ${item}`);
+});
