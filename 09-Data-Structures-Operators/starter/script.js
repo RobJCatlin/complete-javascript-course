@@ -594,44 +594,91 @@
 // restaurant.set('name', "Rob's Place");
 // console.log(restaurant);
 
-const gameEvents = new Map([
-  [17, '⚽ GOAL'],
-  [36, '🔁 Substitution'],
-  [47, '⚽ GOAL'],
-  [61, '🔁 Substitution'],
-  [64, '🔶 Yellow card'],
-  [69, '🔴 Red card'],
-  [70, '🔁 Substitution'],
-  [72, '🔁 Substitution'],
-  [76, '⚽ GOAL'],
-  [80, '⚽ GOAL'],
-  [92, '🔶 Yellow card'],
-]);
+// const gameEvents = new Map([
+//   [17, '⚽ GOAL'],
+//   [36, '🔁 Substitution'],
+//   [47, '⚽ GOAL'],
+//   [61, '🔁 Substitution'],
+//   [64, '🔶 Yellow card'],
+//   [69, '🔴 Red card'],
+//   [70, '🔁 Substitution'],
+//   [72, '🔁 Substitution'],
+//   [76, '⚽ GOAL'],
+//   [80, '⚽ GOAL'],
+//   [92, '🔶 Yellow card'],
+// ]);
 
-// Coding Challenge #3 - Let's continue with our football betting app!
+// // Coding Challenge #3 - Let's continue with our football betting app!
 
-//This time, we have a map called 'gameEvents' (see above) with a log of the events that happened during the game. The values are the events themselves, and the keys are the minutes in which each event happened (a football game has 90 minutes plus some extra time).
+// //This time, we have a map called 'gameEvents' (see above) with a log of the events that happened during the game. The values are the events themselves, and the keys are the minutes in which each event happened (a football game has 90 minutes plus some extra time).
 
-// Your tasks:
+// // Your tasks:
 
-// 1. Create an array 'events' of the different game events that happened (no duplicates)
-const events = [...new Set(gameEvents.values())];
-console.log(events);
+// // 1. Create an array 'events' of the different game events that happened (no duplicates)
+// // this is how you make an array from a Set
+// const events = [...new Set(gameEvents.values())];
+// console.log(events);
 
-// 2. After the game has finished, is was found that the yellow card from minute 64 was unfair. So remove this event from the game events log.
-gameEvents.delete(64);
+// // 2. After the game has finished, is was found that the yellow card from minute 64 was unfair. So remove this event from the game events log.
+// gameEvents.delete(64);
 
-// 3. Compute and log the following string to the console: "An event happened, on average, every 9 minutes" (keep in mind that a game has 90 minutes)
-const time = [...gameEvents.keys()].pop();
+// // 3. Compute and log the following string to the console: "An event happened, on average, every 9 minutes" (keep in mind that a game has 90 minutes)
+// const time = [...gameEvents.keys()].pop();
 
-console.log(
-  `An event happened, on average, every ${time / gameEvents.size} minutes`
-);
+// console.log(
+//   `An event happened, on average, every ${time / gameEvents.size} minutes`
+// );
 
-// 4. Loop over 'gameEvents' and log each element to the console, marking whether it's in the first half or second half (after 45 min) of the game, like this:
-// [FIRST HALF] 17: ⚽   GOAL
-gameEvents.forEach((item, index) => {
-  index <= 45
-    ? console.log(`[FIRST HALF] - ${index}: ${item}`)
-    : console.log(`[SECOND HALF] - ${index}: ${item}`);
-});
+// // 4. Loop over 'gameEvents' and log each element to the console, marking whether it's in the first half or second half (after 45 min) of the game, like this:
+// // [FIRST HALF] 17: ⚽   GOAL
+// gameEvents.forEach((item, index) => {
+//   // index <= 45
+//   //   ? console.log(`[FIRST HALF] - ${index}: ${item}`)
+//   //   : console.log(`[SECOND HALF] - ${index}: ${item}`);
+//   const half = index <= 45 ? FIRST : SECOND;
+//   console.log(`[${half} HALF] - ${index}: ${item}`);
+// });
+
+const airline = 'TAP Air Portugal';
+const plane = 'A320';
+
+console.log(plane[0]);
+console.log(plane[1]);
+// console.log(plane[2]);
+console.log(typeof plane[2]);
+console.log(typeof +plane[3]);
+
+console.log('B737'[0]);
+
+console.log(airline.length);
+console.log('B737'.length);
+
+console.log(airline.indexOf('r'));
+console.log(airline.lastIndexOf('r'));
+
+console.log('Portugal');
+console.log('portugal');
+
+console.log(airline.slice(4));
+console.log(airline.slice(4, 7));
+
+console.log(airline.slice(0, airline.indexOf(' ')));
+console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+
+console.log(airline.slice(-2));
+console.log(airline.slice(1, -1));
+
+const checkMiddleSeat = seat => {
+  // B & E are middle seats
+  const seatNumber = seat.slice(-1);
+  const middleSeat = seatNumber === 'B' || seatNumber === 'E' ? true : false;
+  const msg = `Is seat ${seat} a middle seat? ${middleSeat}`;
+  console.log(msg);
+  return;
+};
+
+checkMiddleSeat('11B');
+checkMiddleSeat('24C');
+checkMiddleSeat('13A');
+checkMiddleSeat('4D');
+checkMiddleSeat('27E');
