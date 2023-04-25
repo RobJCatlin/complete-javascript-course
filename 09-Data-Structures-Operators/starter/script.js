@@ -639,46 +639,70 @@
 //   console.log(`[${half} HALF] - ${index}: ${item}`);
 // });
 
+// const airline = 'TAP Air Portugal';
+// const plane = 'A320';
+
+// console.log(plane[0]);
+// console.log(plane[1]);
+// // console.log(plane[2]);
+// console.log(typeof plane[2]);
+// console.log(typeof +plane[3]);
+
+// console.log('B737'[0]);
+
+// console.log(airline.length);
+// console.log('B737'.length);
+
+// console.log(airline.indexOf('r'));
+// console.log(airline.lastIndexOf('r'));
+
+// console.log('Portugal');
+// console.log('portugal');
+
+// console.log(airline.slice(4));
+// console.log(airline.slice(4, 7));
+
+// console.log(airline.slice(0, airline.indexOf(' ')));
+// console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+
+// console.log(airline.slice(-2));
+// console.log(airline.slice(1, -1));
+
+// const checkMiddleSeat = seat => {
+//   // B & E are middle seats
+//   const seatNumber = seat.slice(-1);
+//   const middleSeat = seatNumber === 'B' || seatNumber === 'E' ? true : false;
+//   if (middleSeat) console.log('You got the middle seat 💩');
+//   else console.log('You got lucky 🍀');
+// };
+
+// checkMiddleSeat('11B');
+// checkMiddleSeat('24C');
+// checkMiddleSeat('13A');
+// checkMiddleSeat('4D');
+// checkMiddleSeat('27E');
+
 const airline = 'TAP Air Portugal';
-const plane = 'A320';
 
-console.log(plane[0]);
-console.log(plane[1]);
-// console.log(plane[2]);
-console.log(typeof plane[2]);
-console.log(typeof +plane[3]);
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
 
-console.log('B737'[0]);
+const passenger = 'JoNAs';
+console.log(passenger);
+const passengerLower = passenger.toLowerCase();
+console.log(passengerLower);
+const passengerCorrect =
+  passengerLower[0].toUpperCase() + passengerLower.slice(1);
+console.log(passengerCorrect);
 
-console.log(airline.length);
-console.log('B737'.length);
-
-console.log(airline.indexOf('r'));
-console.log(airline.lastIndexOf('r'));
-
-console.log('Portugal');
-console.log('portugal');
-
-console.log(airline.slice(4));
-console.log(airline.slice(4, 7));
-
-console.log(airline.slice(0, airline.indexOf(' ')));
-console.log(airline.slice(airline.lastIndexOf(' ') + 1));
-
-console.log(airline.slice(-2));
-console.log(airline.slice(1, -1));
-
-const checkMiddleSeat = seat => {
-  // B & E are middle seats
-  const seatNumber = seat.slice(-1);
-  const middleSeat = seatNumber === 'B' || seatNumber === 'E' ? true : false;
-  const msg = `Is seat ${seat} a middle seat? ${middleSeat}`;
-  console.log(msg);
-  return;
+const passengerNameCorrect = passengerName => {
+  const nameLowerCase = passengerName.toLowerCase();
+  const passengerCorrectQ =
+    nameLowerCase[0].toUpperCase() + nameLowerCase.slice(1);
+  console.log(passengerCorrect);
 };
 
-checkMiddleSeat('11B');
-checkMiddleSeat('24C');
-checkMiddleSeat('13A');
-checkMiddleSeat('4D');
-checkMiddleSeat('27E');
+passengerNameCorrect('ROb');
+passengerNameCorrect('JamIE');
+passengerNameCorrect('mAx');
+passengerNameCorrect('John');
