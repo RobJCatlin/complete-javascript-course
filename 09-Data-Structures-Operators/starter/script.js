@@ -706,3 +706,41 @@ passengerNameCorrect('ROb');
 passengerNameCorrect('JamIE');
 passengerNameCorrect('mAx');
 passengerNameCorrect('John');
+
+const email = 'hello@jonas.io';
+const loginEmail = '  Hello@Jonas.Io \n';
+
+const normalisedEmail = loginEmail.trim().toLowerCase();
+console.log(normalisedEmail);
+console.log(normalisedEmail === email);
+
+const matchingItems = (item1, item2) =>
+  item1 === item2 ? console.log(true) : console.log(false);
+
+matchingItems('hello@jonas.io', 'hello@jonas.io');
+matchingItems('hello@jonas.io', 'hello@jonijdnfijas.io');
+
+//replacing
+const price = '288,97£';
+const priceUS = price.replace('£', '$').replace(',', '.');
+console.log(priceUS);
+
+const announcement =
+  'All passengers come to boarding door 23. Boarding door 23!';
+console.log(announcement);
+
+console.log(announcement.replace('door', 'gate'));
+//regex
+console.log(announcement.replace(/door/g, 'gate'));
+console.log(announcement.replaceAll('door', 'gate'));
+
+//booleans
+
+const plane = 'Airbus A320neo';
+console.log(plane.includes('A320'));
+console.log(plane.includes('Boeing'));
+console.log(plane.startsWith('Air'));
+
+if (plain.startsWith('Air') && plane.endsWith(neo)) {
+  console.log(`Part of the NEW Airbus family`);
+}
