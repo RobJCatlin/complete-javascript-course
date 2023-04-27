@@ -697,7 +697,7 @@ console.log(passengerCorrect);
 
 const passengerNameCorrect = passengerName => {
   const nameLowerCase = passengerName.toLowerCase();
-  const passengerCorrectQ =
+  const passengerCorrect =
     nameLowerCase[0].toUpperCase() + nameLowerCase.slice(1);
   console.log(passengerCorrect);
 };
@@ -735,12 +735,126 @@ console.log(announcement.replace(/door/g, 'gate'));
 console.log(announcement.replaceAll('door', 'gate'));
 
 //booleans
-
 const plane = 'Airbus A320neo';
 console.log(plane.includes('A320'));
 console.log(plane.includes('Boeing'));
 console.log(plane.startsWith('Air'));
 
-if (plain.startsWith('Air') && plane.endsWith(neo)) {
+if (plane.startsWith('Air') && plane.endsWith('neo')) {
   console.log(`Part of the NEW Airbus family`);
 }
+
+//practice exercise
+const checkBaggage = items => {
+  const baggage = items.toLowerCase();
+  baggage.includes('gun') || baggage.includes('knife')
+    ? console.log('Illegal items!')
+    : console.log('Free to board');
+};
+
+checkBaggage('I have a laptop, some Food and a pocket Knife');
+checkBaggage('Socks and a camera');
+checkBaggage('I have some snacks and a gun for protection');
+
+//split and join string methods
+console.log('a+very+nice+string+'.split('+'));
+console.log('Rob Catlin'.split(' '));
+console.log('Max Catlin-Owen'.split('Ca'));
+console.log('Ivy Catlin-Owen'.split('-'));
+
+const [firstName, lastName] = 'Rob Catlin'.split(' ');
+const newNameTest = ['Mr.', firstName, lastName.toUpperCase()];
+console.log(newNameTest);
+const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
+console.log(newName);
+
+const capitaliseName = name => {
+  const nameSplit = name.split(' ');
+  const namesUpper = [];
+  nameSplit.forEach(item => {
+    // namesUpper.push(item[0].toUpperCase() + item.slice(1));
+    namesUpper.push(item.replace(item[0], item[0].toUpperCase()));
+  });
+  console.log(namesUpper.join(' '));
+};
+
+capitaliseName('jessica ann smith davis');
+capitaliseName('rob james catlin');
+capitaliseName('sammy davis jr.');
+
+// Coding Challenge #4
+
+// Write a program that receives a list of variable names written in underscore_case and convert them to camelCase.
+
+// The input will come from a textarea inserted into the DOM (see code below to insert the elements), and conversion will happen when the button is pressed.
+
+// Test data (pasted to textarea, including spaces):
+// underscore_case;
+// first_name;
+// Some_Variable;
+// calculate_AGE;
+// delayed_departure;
+
+// Should produce this output (5 separate console.log outputs): underscoreCase ✅
+// firstName ✅
+// someVariable ✅
+// calculateAge ✅
+// delayedDeparture ✅
+
+// Hints:
+// § Remember which character defines a new line in the textarea 😉
+// § The solution only needs to work for a variable made out of 2 words, like a_b
+// § Start without worrying about the ✅. Tackle that only after you have the variable
+// name conversion working 😉
+// § This challenge is difficult on purpose, so start watching the solution in case
+// you're stuck. Then pause and continue!
+// Afterwards, test with your own test data! GOOD LUCK 😀
+//  ✅
+//   ✅
+// ✅
+// ✅
+//    ✅
+// ✅
+// ✅
+//     ✅
+// ✅
+// ✅
+
+//   underscore_case;
+// first_name;
+//  Some_Variable;
+// calculate_AGE;
+//   delayed_departure;
+
+document.body.append(document.createElement('textarea'));
+const txtArea = document.querySelector('textarea');
+
+const data = ` underscore_case
+first_name
+ Some_Variable
+calculate_AGE
+  delayed_departure`;
+
+txtArea.append(data);
+
+document.body.append(document.createElement('button'));
+
+const toCamelCase = text => {
+  const inputVal = document.querySelector('textarea').value;
+  const inputLowerCase = inputVal.toLowerCase();
+  // // split by the underscore
+  const inputSplit = inputLowerCase.split('\n');
+  console.log(inputSplit);
+  inputSplit.forEach(item => {
+    // console.log(item.trim());
+    // console.log(item);
+    // console.log(item[0][0]);
+  });
+  //take the first letter after the underscore
+  //toUpperCase()
+  //replace the first letter after the underscore with the capital letter
+  //.join(' ')
+  // console.log(inputLower);
+};
+
+document.querySelector('button').addEventListener('click', toCamelCase);
