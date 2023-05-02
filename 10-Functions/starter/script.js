@@ -45,3 +45,36 @@ checkIn(flight, rob);
 console.log(flight);
 console.log(rob);
 console.log();
+
+const oneWord = str => str.replace(/ /g, '');
+console.log(oneWord('Hi my name is Rob Catlin'));
+
+const upperFirstLetter = str => {
+  const [firstLetter, ...otherLetters] = str.toLowerCase();
+  const newWord = firstLetter.toUpperCase() + otherLetters.join('');
+  return newWord;
+};
+
+upperFirstLetter('catlin');
+upperFirstLetter('boOk');
+upperFirstLetter('super Amazing shit balls');
+
+const upperFirstWord = str => {
+  const [firstWord, ...otherWords] = str.split(' ');
+  return [firstWord.toUpperCase(), ...otherWords].join(' ');
+  // console.log([firstWord.toUpperCase(), ...otherWords].join(' '));
+  // return;
+};
+
+upperFirstWord('Rob Catlin is Amazing!!!!');
+upperFirstWord('Amazing Rob Catlin is (Yoda) *********************');
+
+const transformer = (str, fn) => {
+  console.log(`Original string: ${str}`);
+  console.log(`Transformed string: ${fn(str)}`);
+  console.log(`Transformed by: ${fn.name}`);
+};
+
+transformer('Rob Catlin is dope yo', upperFirstWord);
+console.log('=====================================');
+transformer("how are y'all doing today?", upperFirstLetter);
