@@ -78,3 +78,9 @@ const transformer = (str, fn) => {
 transformer('Rob Catlin is dope yo', upperFirstWord);
 console.log('=====================================');
 transformer("how are y'all doing today?", upperFirstLetter);
+
+const high5 = () => {
+  console.log('👋');
+};
+
+document.body.addEventListener('click', high5);
