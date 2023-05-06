@@ -171,6 +171,31 @@ book.call(swiss, ...flightData);
 //bind method
 // book.call(eurowings, 444, 'Parold Barold');
 //using the .bind() method you can bind something to the 'this' keyword
+//you can just use .bind() once, rather than using .call() each time
 const bookEW = book.bind(eurowings);
+const bookLH = book.bind(lufthansa);
+const bookLX = book.bind(swiss);
 
 bookEW(23, 'Stephen Williams');
+
+const bookEW23 = book.bind(eurowings, 23);
+
+bookEW23('Dawn Owen');
+
+//with eventListeners
+
+lufthansa.planes = 300;
+
+lufthansa.buyPlane = function () {
+  console.log(this);
+  this.planes++;
+  console.log(this.planes);
+};
+
+document
+  .querySelector('.buy')
+  .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+//partial application
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.1, 200));
