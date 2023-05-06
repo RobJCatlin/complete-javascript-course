@@ -167,3 +167,10 @@ const flightData = [583, 'Bob Cooper'];
 book.apply(swiss, flightData);
 //new way using the spread operator
 book.call(swiss, ...flightData);
+
+//bind method
+// book.call(eurowings, 444, 'Parold Barold');
+//using the .bind() method you can bind something to the 'this' keyword
+const bookEW = book.bind(eurowings);
+
+bookEW(23, 'Stephen Williams');
