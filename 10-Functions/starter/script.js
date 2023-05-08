@@ -199,3 +199,52 @@ document
 //partial application
 const addTax = (rate, value) => value + value * rate;
 console.log(addTax(0.1, 200));
+
+const addVAT = addTax.bind(null, 0.23);
+
+console.log(addVAT(50));
+
+//CHALLENGE
+//create a function which can return a function which does this - const addVAT = addTax.bind(null, 0.23);
+const addTaxFunc = value => {
+  return function (rate) {
+    console.log(`Value: ${value} * ${rate} = ${value + value * rate}`);
+  };
+};
+
+addTaxFunc(100)(0.23);
+addTaxFunc(23)(0.23);
+
+const addTaxFunc2 = value => rate =>
+  console.log(`Value: ${value} * ${rate} = ${value + value * rate}`);
+
+addTaxFunc2(100)(0.23);
+addTaxFunc2(23)(0.23);
+addTaxFunc2(20)(0.2);
+
+const addTaxRate = rate => {
+  return function (value) {
+    console.log(`Value: ${value} * ${rate} = ${value + value * rate}`);
+  };
+};
+
+const addVAT2 = addTaxRate(0.23);
+
+addVAT2(100);
+addVAT2(23);
+
+// const greeting = function (greeting) {
+//   return function (name) {
+//     console.log(`${greeting} ${name}`);
+//   };
+// };
+
+// const greeting2 = greeting => name => console.log(`${greeting} ${name}`);
+
+// const greeterHeya = greeting('Heya');
+
+// greeterHeya('Robbie');
+// greeterHeya('Jamie');
+
+// greeting('Heya')('Rob');
+// greeting2('Yo')('Bobby');
