@@ -350,3 +350,23 @@ runOnce();
 
 // console.log(isPrivate);
 console.log(isPrivate2);
+
+//closures
+const secureBooking = () => {
+  let passengerCount = 0;
+  return () => {
+    passengerCount++;
+    passengerCount === 1
+      ? console.log(`${passengerCount} passenger`)
+      : console.log(`${passengerCount} passengers`);
+  };
+};
+
+//this variable saves the returned function and has access to all variables that were present in it's parent function at the time it was created ('born')
+const booker = secureBooking();
+
+booker();
+booker();
+booker();
+
+console.dir(booker);
