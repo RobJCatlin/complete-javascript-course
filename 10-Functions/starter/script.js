@@ -324,3 +324,29 @@ poll.displayResults.call({ answers: data2 });
 // § Data1:[5,2,3]
 // § Data2:[1,5,3,9,6,1]
 // Hints: Use many of the tools you learned about in this and the last section
+
+const runOnce = () => {
+  console.log('This will never run again!');
+};
+
+runOnce();
+
+// IIFE
+(function () {
+  console.log('This will never run again!');
+  const isPrivate = 23;
+})();
+
+// console.log(isPrivate);
+
+(() => {
+  console.log('This will ALSO never run again!');
+})();
+
+{
+  const isPrivate = 50;
+  var isPrivate2 = 33;
+}
+
+// console.log(isPrivate);
+console.log(isPrivate2);
