@@ -65,13 +65,7 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // LECTURES
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
-
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
@@ -125,3 +119,29 @@ console.log(arr3.at(-1));
 //also works on strings
 console.log('Rob Catlin'.at(0));
 console.log('Rob Catlin'.at(-1));
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// for (const movement of movements) {
+for (const [i, movement] of movements.entries()) {
+  movement < 0
+    ? console.log(`Withdrawl: £${movement}`)
+    : console.log(`Deposit: £${movement}`);
+  console.log(i + 1);
+}
+
+movements.forEach((item, index, array) => {
+  item < 0
+    ? console.log(`Tx #${index + 1} - Withdrawl: £${Math.abs(item)}`)
+    : console.log(`Tx #${index + 1} - Deposit: £${item}`);
+});
+
+const currencies = new Map([
+  ['USD', 'United States dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'Pound sterling'],
+]);
+
+currencies.forEach((value, key, map) => {
+  console.log(`${key}: ${value}`);
+});
