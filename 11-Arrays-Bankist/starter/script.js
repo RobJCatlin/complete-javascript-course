@@ -78,11 +78,31 @@ const displayMovements = movements => {
 };
 
 displayMovements(account1.movements);
+
+// const user = 'Steven Thomas Williams'; //stw
+
+const createUserNames = accs => {
+  accs.forEach(acc => {
+    acc.username = acc.owner
+      .toLowerCase()
+      //.split()method creates an array, so wecan run the map method straight on it
+      .split(' ')
+      // name.slice(0, 1);
+      .map(name => name[0])
+      .join('');
+  });
+};
+
+createUserNames(accounts);
+console.log(accounts);
+
+// console.log(userName);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
@@ -212,3 +232,26 @@ displayMovements(account1.movements);
 // § Data 1: Julia's data [3, 5, 2, 12, 7], Kate's data [4, 1, 15, 8, 3] §
 // Data 2: Julia's data [9, 16, 6, 8, 3], Kate's data [10, 5, 6, 1, 4]
 // Hints: Use tools from all lectures in this section so far
+// const eurosToUsd = 1.1;
+
+// const movementsUSD = movements.map(mov => mov * eurosToUsd);
+
+// console.log(movements);
+// console.log(movementsUSD);
+
+// //same result, but using a totally different method (forOf loop) to acchieve the same outcome
+// const movementsUSDForOf = [];
+
+// for (const mov of movements) movementsUSDForOf.push(mov * eurosToUsd);
+
+// console.log(movementsUSDForOf);
+
+// const movementDescriptions = movements.map(
+//   (mov, i) =>
+//     `Tx #${i + 1} - ${mov < 0 ? 'Withdrawl' : 'Deposit'}: £${Math.abs(mov)}`
+//   // return mov < 0
+//   //   ? `Tx #${index + 1} - Withdrawl: £${Math.abs(item)}`
+//   //   : `Tx #${index + 1} - Deposit: £${item}`;
+// );
+
+// console.log(movementDescriptions);
