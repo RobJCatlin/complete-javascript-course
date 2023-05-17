@@ -96,6 +96,7 @@ const createUserNames = accs => {
 createUserNames(accounts);
 console.log(accounts);
 
+const calcPrintedBalance = movements => {};
 // console.log(userName);
 
 /////////////////////////////////////////////////
@@ -255,3 +256,27 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // );
 
 // console.log(movementDescriptions);
+
+//filter method
+// const deposits = movements.filter(mov => mov > 0);
+// const withdrawals = movements.filter(mov => mov < 0);
+
+// console.log(movements);
+// console.log(deposits);
+// console.log(withdrawals);
+
+// const depositsForOf = [];
+// for (const mov of movements) mov > 0 && depositsForOf.push(mov);
+// console.log(depositsForOf);
+
+//reduce method
+console.log(movements);
+//accumulator is like a snowball
+// const balance = movements.reduce((acc, current, i, array) => {
+//   console.log(`Iteration ${i + 1}: Current value: ${acc}`);
+//   return acc + current;
+// }, 0);
+
+const balance = movements.reduce((acc, current, i, array) => acc + current, 0);
+
+console.log(balance);
