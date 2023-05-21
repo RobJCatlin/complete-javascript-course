@@ -72,7 +72,7 @@ const displayMovements = movements => {
         <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-        <div class="movements__value">${mov}</div>
+        <div class="movements__value">${mov}€</div>
       </div>
     `;
     containerMovements.insertAdjacentHTML('afterbegin', html);
@@ -86,12 +86,26 @@ displayMovements(account1.movements);
 const calcDisplayBalance = movements => {
   const mainBalanceEl = document.querySelector('.balance__value');
   const balance = movements.reduce((acc, mov) => acc + mov, 0);
-  mainBalanceEl.textContent = `${balance} EUR`;
+  mainBalanceEl.textContent = `${balance}€`;
 };
 
 calcDisplayBalance(account1.movements);
 
-// const calcDisplaySummary =
+const calcDisplaySummary = movements => {
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes}€`;
+
+  const outgoings = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(outgoings)}€`;
+
+  const interest = movements.filter(mov => mov > 0).map((acc, mov) => )
+};
+
+console.log(calcDisplaySummary(account1.movements));
 
 const createUserNames = accs => {
   accs.forEach(acc => {
@@ -307,26 +321,26 @@ const max = movements.reduce(
 // Your tasks:
 // Create a function 'calcAverageHumanAge', which accepts an arrays of dog's ages ('ages'), and does the following things in order:
 
-const calcAverageHumanAge = ages => {
-  const inHumanYears = ages.map(age => (age <= 2 ? 2 * age : 16 + age * 4));
-  // console.log(inHumanYears);
+// const calcAverageHumanAge = ages => {
+//   const inHumanYears = ages.map(age => (age <= 2 ? 2 * age : 16 + age * 4));
+//   // console.log(inHumanYears);
 
-  const adultDogs = inHumanYears.filter(age => age > 17);
-  // console.log(adultDogs);
+//   const adultDogs = inHumanYears.filter(age => age > 17);
+//   // console.log(adultDogs);
 
-  const humanAge =
-    adultDogs.reduce((acc, val) => acc + val, 0) / adultDogs.length;
-  return humanAge;
-  // console.log(`Human Age: ${humanAge}`);
-  // const averageHumanAge = humanAge / adultDogs.length;
-  // console.log(humanAge);
-};
+//   const humanAge =
+//     adultDogs.reduce((acc, val) => acc + val, 0) / adultDogs.length;
+//   return humanAge;
+//   // console.log(`Human Age: ${humanAge}`);
+//   // const averageHumanAge = humanAge / adultDogs.length;
+//   // console.log(humanAge);
+// };
 
-const avr1 = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
-const avr2 = calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
+// const avr1 = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+// const avr2 = calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
 
-console.log(avr1);
-console.log(avr2);
+// console.log(avr1);
+// console.log(avr2);
 
 // 1. Calculate the dog age in human years using the following formula: if the dog is <= 2 years old, humanAge = 2 * dogAge. If the dog is > 2 years old, humanAge = 16 + dogAge * 4
 
@@ -340,16 +354,16 @@ console.log(avr2);
 // Data1:[5,2,4,1,15,8,3]
 // Data2:[16,6,10,5,6,1,4]
 
-const euroToUsd = 1.1;
+// const euroToUsd = 1.1;
 
-//pipeline
-const totalDepositsUSD = movements
-  .filter(mov => mov > 0)
-  .map(mov => mov * euroToUsd)
-  // .map((mov, i, arr) => {
-  //   console.log(arr);
-  //   return mov * euroToUsd;
-  // })
-  .reduce((acc, mov) => acc + mov, 0);
+// //pipeline
+// const totalDepositsUSD = movements
+//   .filter(mov => mov > 0)
+//   .map(mov => mov * euroToUsd)
+//   // .map((mov, i, arr) => {
+//   //   console.log(arr);
+//   //   return mov * euroToUsd;
+//   // })
+//   .reduce((acc, mov) => acc + mov, 0);
 
-console.log(totalDepositsUSD);
+// console.log(totalDepositsUSD);
