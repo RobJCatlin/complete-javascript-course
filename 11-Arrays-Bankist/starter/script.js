@@ -63,9 +63,9 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const displayMovements = movements => {
+const displayMovements = acc => {
   containerMovements.innerHTML = '';
-  movements.forEach((mov, i) => {
+  acc.movements.forEach((mov, i) => {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
     const html = `
       <div class="movements__row">
@@ -79,32 +79,32 @@ const displayMovements = movements => {
   });
 };
 
-displayMovements(account1.movements);
+// displayMovements(account1.movements);
 
 // const user = 'Steven Thomas Williams'; //stw
 
-const calcDisplayBalance = movements => {
+const calcDisplayBalance = acc => {
   const mainBalanceEl = document.querySelector('.balance__value');
-  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  const balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
   mainBalanceEl.textContent = `${balance}€`;
 };
 
-calcDisplayBalance(account1.movements);
+// calcDisplayBalance(account1.movements);
 
-const calcDisplaySummary = movements => {
-  const incomes = movements
+const calcDisplaySummary = acc => {
+  const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = `${incomes}€`;
 
-  const outgoings = movements
+  const outgoings = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumOut.textContent = `${Math.abs(outgoings)}€`;
 
-  const interest = movements
+  const interest = acc.movements
     .filter(mov => mov > 0)
-    .map(deposit => (deposit * 1.2) / 100)
+    .map(deposit => (deposit * acc.interestRate) / 100)
     .filter((interest, i, arr) => {
       console.log(arr);
       return interest >= 1;
@@ -113,7 +113,7 @@ const calcDisplaySummary = movements => {
   labelSumInterest.textContent = `${interest}€`;
 };
 
-console.log(calcDisplaySummary(account1.movements));
+// console.log(calcDisplaySummary(account1.movements));
 
 const createUserNames = accs => {
   accs.forEach(acc => {
@@ -128,14 +128,46 @@ const createUserNames = accs => {
 };
 
 createUserNames(accounts);
-// console.log(accounts);
 
-// console.log(userName);
+//event handler
+let currentAccount;
 
-const max = movements.reduce(
-  (acc, mov) => (acc > mov ? acc : mov),
-  movements[0]
-);
+btnLogin.addEventListener('click', e => {
+  //prevent form from submitting
+  e.preventDefault();
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
+
+  console.log(currentAccount);
+
+  if (currentAccount?.pin === +inputLoginPin.value) {
+    //display UI and welcome message
+    labelWelcome.textContent = `Welcome back ${
+      currentAccount.owner.split(' ')[0]
+    }`;
+
+    containerApp.style.opacity = 100;
+
+    //clear input fields
+    inputLoginUsername.value = inputLoginPin.value = '';
+
+    //clear focus
+    inputLoginPin.blur();
+
+    //calculate balance => display balance
+    calcDisplayBalance(currentAccount);
+    //calculate summary => calculate movements
+    calcDisplaySummary(currentAccount);
+    //display movements
+    displayMovements(currentAccount);
+    //start logout timer
+  }
+});
+// const max = movements.reduce(
+//   (acc, mov) => (acc > mov ? acc : mov),
+//   movements[0]
+// );
 // return acc > mov ? (acc = mov) : mov; // incorrect logic, think about things!!
 
 // console.log(movements);
@@ -393,3 +425,13 @@ const max = movements.reduce(
 // Test data:
 // Data1:[5,2,4,1,15,8,3]
 // Data2:[16,6,10,5,6,1,4]
+
+//find method - doesn't return a new array, only the first element that matches
+// const firstWithdrwal = movements.find(mov => mov < 0);
+// console.log(movements);
+// console.log(firstWithdrwal);
+
+// console.log(accounts);
+
+// const accounts2 = accounts.find(acc => acc.owner === 'Jessica Davis');
+// console.log(accounts2);
