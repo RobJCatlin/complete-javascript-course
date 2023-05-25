@@ -36,6 +36,7 @@ const account4 = {
 };
 
 const accounts = [account1, account2, account3, account4];
+console.log(accounts);
 
 // Elements
 const labelWelcome = document.querySelector('.welcome');
@@ -79,17 +80,11 @@ const displayMovements = acc => {
   });
 };
 
-// displayMovements(account1.movements);
-
-// const user = 'Steven Thomas Williams'; //stw
-
 const calcDisplayBalance = acc => {
   const mainBalanceEl = document.querySelector('.balance__value');
-  const balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-  mainBalanceEl.textContent = `${balance}€`;
+  acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
+  mainBalanceEl.textContent = `${acc.balance}€`;
 };
-
-// calcDisplayBalance(account1.movements);
 
 const calcDisplaySummary = acc => {
   const incomes = acc.movements
@@ -113,8 +108,6 @@ const calcDisplaySummary = acc => {
   labelSumInterest.textContent = `${interest}€`;
 };
 
-// console.log(calcDisplaySummary(account1.movements));
-
 const createUserNames = accs => {
   accs.forEach(acc => {
     acc.username = acc.owner
@@ -131,6 +124,12 @@ createUserNames(accounts);
 
 //event handler
 let currentAccount;
+
+const updateUI = acc => {
+  calcDisplayBalance(acc);
+  calcDisplaySummary(acc);
+  displayMovements(acc);
+};
 
 btnLogin.addEventListener('click', e => {
   //prevent form from submitting
@@ -155,15 +154,33 @@ btnLogin.addEventListener('click', e => {
     //clear focus
     inputLoginPin.blur();
 
-    //calculate balance => display balance
-    calcDisplayBalance(currentAccount);
-    //calculate summary => calculate movements
-    calcDisplaySummary(currentAccount);
-    //display movements
-    displayMovements(currentAccount);
+    // updateUI
+    updateUI(currentAccount);
+
     //start logout timer
   }
 });
+
+btnTransfer.addEventListener('click', e => {
+  e.preventDefault();
+  const amount = +inputTransferAmount.value;
+  const receiverAcc = accounts.find(
+    acc => acc.username === inputTransferTo.value
+  );
+  if (
+    amount > 0 &&
+    receiverAcc &&
+    currentAccount.balance >= amount &&
+    receiverAcc?.username !== currentAccount.username
+  ) {
+    receiverAcc.movements.push(amount);
+    currentAccount.movements.push(-amount);
+
+    // updateUI
+    updateUI(currentAccount);
+  }
+});
+
 // const max = movements.reduce(
 //   (acc, mov) => (acc > mov ? acc : mov),
 //   movements[0]
