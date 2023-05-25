@@ -101,7 +101,7 @@ const calcDisplaySummary = acc => {
     .filter(mov => mov > 0)
     .map(deposit => (deposit * acc.interestRate) / 100)
     .filter((interest, i, arr) => {
-      console.log(arr);
+      // console.log(arr);
       return interest >= 1;
     })
     .reduce((acc, interest) => acc + interest, 0);
@@ -138,7 +138,7 @@ btnLogin.addEventListener('click', e => {
     acc => acc.username === inputLoginUsername.value
   );
 
-  console.log(currentAccount);
+  // console.log(currentAccount);
 
   if (currentAccount?.pin === +inputLoginPin.value) {
     //display UI and welcome message
@@ -150,10 +150,8 @@ btnLogin.addEventListener('click', e => {
 
     //clear input fields
     inputLoginUsername.value = inputLoginPin.value = '';
-
     //clear focus
     inputLoginPin.blur();
-
     // updateUI
     updateUI(currentAccount);
 
@@ -176,9 +174,29 @@ btnTransfer.addEventListener('click', e => {
     receiverAcc.movements.push(amount);
     currentAccount.movements.push(-amount);
 
+    inputTransferAmount.value = inputTransferTo.value = '';
+
     // updateUI
     updateUI(currentAccount);
   }
+});
+
+btnClose.addEventListener('click', e => {
+  e.preventDefault();
+  // const userName = inputCloseUsername.value;
+  // const userPin = +inputClosePin.value;
+  if (
+    inputCloseUsername.value === currentAccount.username &&
+    +inputClosePin.value === currentAccount.pin
+  ) {
+    const deleteAccountIndex = accounts.findIndex(
+      acc => acc.username === currentAccount.username
+    );
+    accounts.splice(deleteAccountIndex, 1);
+  }
+  console.log(accounts);
+  inputCloseUsername.value = inputClosePin.value = '';
+  containerApp.style.opacity = 0;
 });
 
 // const max = movements.reduce(
