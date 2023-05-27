@@ -137,25 +137,18 @@ btnLogin.addEventListener('click', e => {
   currentAccount = accounts.find(
     acc => acc.username === inputLoginUsername.value
   );
-
-  // console.log(currentAccount);
-
   if (currentAccount?.pin === +inputLoginPin.value) {
     //display UI and welcome message
     labelWelcome.textContent = `Welcome back ${
       currentAccount.owner.split(' ')[0]
     }`;
-
     containerApp.style.opacity = 100;
-
     //clear input fields
     inputLoginUsername.value = inputLoginPin.value = '';
     //clear focus
     inputLoginPin.blur();
     // updateUI
     updateUI(currentAccount);
-
-    //start logout timer
   }
 });
 
@@ -173,12 +166,16 @@ btnTransfer.addEventListener('click', e => {
   ) {
     receiverAcc.movements.push(amount);
     currentAccount.movements.push(-amount);
-
     inputTransferAmount.value = inputTransferTo.value = '';
-
     // updateUI
     updateUI(currentAccount);
   }
+});
+
+btnLoan.addEventListener('click', e => {
+  e.preventDefault();
+  //can provide loan as long as there's a deposit in account for at least 10% of loan value
+  const loanAmount = inputLoanAmount.value;
 });
 
 btnClose.addEventListener('click', e => {
@@ -470,3 +467,10 @@ btnClose.addEventListener('click', e => {
 
 // const accounts2 = accounts.find(acc => acc.owner === 'Jessica Davis');
 // console.log(accounts2);
+
+console.log(movements);
+//includes only tests for equality
+console.log(movements.includes(-130));
+//some tests for condition(s)
+const anyDeposits = movements.some(mov => mov > 5000);
+console.log(anyDeposits);
