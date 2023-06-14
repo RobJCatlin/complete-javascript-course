@@ -174,8 +174,16 @@ btnTransfer.addEventListener('click', e => {
 
 btnLoan.addEventListener('click', e => {
   e.preventDefault();
-  //can provide loan as long as there's a deposit in account for at least 10% of loan value
-  const loanAmount = inputLoanAmount.value;
+  // can provide loan as long as there's a deposit in account for at least 10% of loan value
+  const amount = +inputLoanAmount.value;
+  // if there is a deposit larger than 10% of the loan value
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    // add movements
+    currentAccount.movements.push(amount);
+    // update UI
+    updateUI(currentAccount);
+  }
+  inputLoanAmount.value = '';
 });
 
 btnClose.addEventListener('click', e => {
@@ -469,8 +477,12 @@ btnClose.addEventListener('click', e => {
 // console.log(accounts2);
 
 console.log(movements);
-//includes only tests for equality
+// some: includes only tests for equality
 console.log(movements.includes(-130));
-//some tests for condition(s)
+// some tests for condition(s)
 const anyDeposits = movements.some(mov => mov > 5000);
 console.log(anyDeposits);
+
+// every
+// only returns true if every element passes the test
+console.log(movements.every());
