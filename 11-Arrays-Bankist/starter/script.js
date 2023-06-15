@@ -177,6 +177,7 @@ btnLoan.addEventListener('click', e => {
   // can provide loan as long as there's a deposit in account for at least 10% of loan value
   const amount = +inputLoanAmount.value;
   // if there is a deposit larger than 10% of the loan value
+  // if at leat one of the elements in the movements array matched the conditional
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
     // add movements
     currentAccount.movements.push(amount);
@@ -485,4 +486,10 @@ console.log(anyDeposits);
 
 // every
 // only returns true if every element passes the test
-console.log(movements.every());
+console.log(movements.every(mov => mov > 0));
+console.log(account4.movements.every(mov => mov > 0));
+
+const deposit = mov => mov > 0;
+console.log(movements.some(deposit));
+console.log(movements.every(deposit));
+console.log(movements.filter(deposit));
