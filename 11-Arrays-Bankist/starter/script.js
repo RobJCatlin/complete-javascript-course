@@ -477,19 +477,27 @@ btnClose.addEventListener('click', e => {
 // const accounts2 = accounts.find(acc => acc.owner === 'Jessica Davis');
 // console.log(accounts2);
 
-console.log(movements);
-// some: includes only tests for equality
-console.log(movements.includes(-130));
-// some tests for condition(s)
-const anyDeposits = movements.some(mov => mov > 5000);
-console.log(anyDeposits);
+// console.log(movements);
+// // some: includes only tests for equality
+// console.log(movements.includes(-130));
+// // some tests for condition(s)
+// const anyDeposits = movements.some(mov => mov > 5000);
+// console.log(anyDeposits);
 
-// every
-// only returns true if every element passes the test
-console.log(movements.every(mov => mov > 0));
-console.log(account4.movements.every(mov => mov > 0));
+// // every
+// // only returns true if every element passes the test
+// console.log(movements.every(mov => mov > 0));
+// console.log(account4.movements.every(mov => mov > 0));
 
-const deposit = mov => mov > 0;
-console.log(movements.some(deposit));
-console.log(movements.every(deposit));
-console.log(movements.filter(deposit));
+// const deposit = mov => mov > 0;
+// console.log(movements.some(deposit));
+// console.log(movements.every(deposit));
+// console.log(movements.filter(deposit));
+
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(arr);
+console.log(arr.flat());
+
+const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+console.log(arrDeep.flat(1));
+console.log(arrDeep.flat(2));
