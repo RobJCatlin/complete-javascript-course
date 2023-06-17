@@ -535,22 +535,61 @@ btnSort.addEventListener('click', e => {
 // console.log(overallBalance2);
 
 // sort() method - Strings
-const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
-console.log(owners.sort());
+// const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
+// console.log(owners.sort());
 
-// sort() method - Numbers
-console.log(movements);
-console.log(movements.sort());
+// // sort() method - Numbers
+// console.log(movements);
+// console.log(movements.sort());
 
-// return < 0, A, B (keep order)
-// return > 0, B, A (change order)
+// // return < 0, A, B (keep order)
+// // return > 0, B, A (change order)
 
-// ascending
-// movements.sort((a, b) => (a > b ? 1 : -1));
-movements.sort((a, b) => a - b);
-console.log(movements);
+// // ascending
+// // movements.sort((a, b) => (a > b ? 1 : -1));
+// movements.sort((a, b) => a - b);
+// console.log(movements);
 
-// descending
-// movements.sort((a, b) => (a > b ? 1 : -1));
-movements.sort((a, b) => b - a);
-console.log(movements);
+// // descending
+// // movements.sort((a, b) => (a > b ? 1 : -1));
+// movements.sort((a, b) => b - a);
+// console.log(movements);
+
+const arr = [1, 2, 3, 4, 5, 6, 7];
+console.log(new Array(1, 2, 3, 4, 5, 6, 7));
+
+const x = new Array(7);
+console.log(x);
+// console.log(x.map(() => 5));
+// x.fill(1);
+// fill() method can set start and finishof the fill, similar to the slice array method
+x.fill(1, 3, 5);
+console.log(x);
+
+arr.fill(23, 4, 6);
+console.log(arr);
+
+const y = Array.from({ length: 7 }, () => 1);
+console.log(y);
+
+const z = Array.from({ length: 7 }, (_, i) => i + 1);
+console.log(z);
+
+const zz = Array.from(arr);
+console.log(`zz: ${zz}`);
+
+// 100 random dicerolls
+const randomDiceRoll = () => Math.floor(Math.random() * 6) + 1;
+const rollResults = Array.from({ length: 100 }, (_, i) => randomDiceRoll());
+console.log(rollResults);
+
+// const movementsUI = Array.from(document.querySelectorAll('.movements__value'));
+// console.log(movementsUI);
+
+labelBalance.addEventListener('click', () => {
+  const movementsUI = Array.from(
+    document.querySelectorAll('.movements__value'),
+    el => +el.textContent.replace('€', '')
+  );
+  console.log(movementsUI);
+});
