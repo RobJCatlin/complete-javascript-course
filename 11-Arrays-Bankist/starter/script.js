@@ -578,11 +578,6 @@ console.log(z);
 const zz = Array.from(arr);
 console.log(`zz: ${zz}`);
 
-// 100 random dicerolls
-const randomDiceRoll = () => Math.floor(Math.random() * 6) + 1;
-const rollResults = Array.from({ length: 100 }, (_, i) => randomDiceRoll());
-console.log(rollResults);
-
 // const movementsUI = Array.from(document.querySelectorAll('.movements__value'));
 // console.log(movementsUI);
 
@@ -593,3 +588,27 @@ labelBalance.addEventListener('click', () => {
   );
   console.log(movementsUI);
 });
+
+// 100 random dicerolls
+// const randomDiceRoll = () => Math.floor(Math.random() * 6) + 1;
+// const rollResults = Array.from({ length: 100 }, (_, i) => randomDiceRoll());
+// console.log(rollResults);
+
+///////////////////////////////////////////////
+// Array method practice
+
+// exercise #1
+const bankDepositSum = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov > 0)
+  .reduce((sum, cur) => sum + cur);
+console.log(bankDepositSum);
+
+// exercise #2 a
+const numDeposits1000 = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov >= 1000);
+console.log(numDeposits1000);
+// exercise #2 b
+const numDeposits1000Reduce = accounts.flatMap(acc => acc.movements);
+console.log(numDeposits1000Reduce);
