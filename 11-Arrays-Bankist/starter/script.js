@@ -601,7 +601,7 @@ labelBalance.addEventListener('click', () => {
 const bankDepositSum = accounts
   .flatMap(acc => acc.movements)
   .filter(mov => mov > 0)
-  .reduce((sum, cur) => sum + cur);
+  .reduce((sum, cur) => sum + cur, 0);
 console.log(bankDepositSum);
 
 // exercise #2 a
@@ -609,6 +609,38 @@ const numDeposits1000 = accounts
   .flatMap(acc => acc.movements)
   .filter(mov => mov >= 1000);
 console.log(numDeposits1000);
+
 // exercise #2 b
-const numDeposits1000Reduce = accounts.flatMap(acc => acc.movements);
+const numDeposits1000Reduce = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((count, cur) => (cur >= 1000 ? ++count : count), 0);
 console.log(numDeposits1000Reduce);
+
+let a = 10;
+// this only returns the current value = 10, not the updated value = 11
+console.log(a++);
+console.log(a);
+// prefixed operator ++
+// this returns the updated value
+console.log(++a);
+
+// exercise #3
+const { deposits, withdrawals } = accounts
+  .flatMap(acc => acc.movements)
+  .reduce(
+    (sums, cur) => {
+      // cur > 0 ? (sums.deposits += cur) : (sums.withdrawals += cur);
+      sums[cur > 0 ? 'deposits' : 'withdrawals'] += cur;
+      return sums;
+    },
+    { deposits: 0, withdrawals: 0 }
+  );
+console.log(deposits, withdrawals);
+
+// exercise #4
+const convertTitleCase = str => {
+  const string = str.split;
+  console.log(string);
+  return string;
+};
+console.log(convertTitleCase('Blah a blah blaweie'));
