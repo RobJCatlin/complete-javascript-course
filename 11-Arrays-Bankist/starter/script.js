@@ -639,8 +639,12 @@ console.log(deposits, withdrawals);
 
 // exercise #4
 const convertTitleCase = str => {
-  const string = str.split;
-  console.log(string);
-  return string;
+  const exceptions = ['a', 'an', 'the', 'but', 'or', 'on', 'in', 'with'];
+  const string = str.toLowerCase().split(' ');
+  const newString = string.forEach(word => {
+    word.slice(0, 1);
+  });
+  return newString;
 };
+
 console.log(convertTitleCase('Blah a blah blaweie'));
