@@ -598,56 +598,105 @@ labelBalance.addEventListener('click', () => {
 // Array method practice
 
 // exercise #1
-const bankDepositSum = accounts
-  .flatMap(acc => acc.movements)
-  .filter(mov => mov > 0)
-  .reduce((sum, cur) => sum + cur, 0);
-console.log(bankDepositSum);
+// const bankDepositSum = accounts
+//   .flatMap(acc => acc.movements)
+//   .filter(mov => mov > 0)
+//   .reduce((sum, cur) => sum + cur, 0);
+// console.log(bankDepositSum);
 
-// exercise #2 a
-const numDeposits1000 = accounts
-  .flatMap(acc => acc.movements)
-  .filter(mov => mov >= 1000);
-console.log(numDeposits1000);
+// // exercise #2 a
+// const numDeposits1000 = accounts
+//   .flatMap(acc => acc.movements)
+//   .filter(mov => mov >= 1000);
+// console.log(numDeposits1000);
 
-// exercise #2 b
-const numDeposits1000Reduce = accounts
-  .flatMap(acc => acc.movements)
-  .reduce((count, cur) => (cur >= 1000 ? ++count : count), 0);
-console.log(numDeposits1000Reduce);
+// // exercise #2 b
+// const numDeposits1000Reduce = accounts
+//   .flatMap(acc => acc.movements)
+//   .reduce((count, cur) => (cur >= 1000 ? ++count : count), 0);
+// console.log(numDeposits1000Reduce);
 
-let a = 10;
-// this only returns the current value = 10, not the updated value = 11
-console.log(a++);
-console.log(a);
-// prefixed operator ++
-// this returns the updated value
-console.log(++a);
+// let a = 10;
+// // this only returns the current value = 10, not the updated value = 11
+// console.log(a++);
+// console.log(a);
+// // prefixed operator ++
+// // this returns the updated value
+// console.log(++a);
 
-// exercise #3
-const { deposits, withdrawals } = accounts
-  .flatMap(acc => acc.movements)
-  .reduce(
-    (sums, cur) => {
-      // cur > 0 ? (sums.deposits += cur) : (sums.withdrawals += cur);
-      sums[cur > 0 ? 'deposits' : 'withdrawals'] += cur;
-      return sums;
-    },
-    { deposits: 0, withdrawals: 0 }
-  );
-console.log(deposits, withdrawals);
+// // exercise #3
+// const { deposits, withdrawals } = accounts
+//   .flatMap(acc => acc.movements)
+//   .reduce(
+//     (sums, cur) => {
+//       // cur > 0 ? (sums.deposits += cur) : (sums.withdrawals += cur);
+//       sums[cur > 0 ? 'deposits' : 'withdrawals'] += cur;
+//       return sums;
+//     },
+//     { deposits: 0, withdrawals: 0 }
+//   );
+// console.log(deposits, withdrawals);
 
-// exercise #4
-const convertTitleCase = str => {
-  const capitalise = str => str[0].toUpperCase() + str.slice(1);
-  const exceptions = ['a', 'an', 'and', 'the', 'but', 'or', 'on', 'in', 'with'];
-  const string = str
-    .toLowerCase()
-    .split(' ')
-    .map(word => (exceptions.includes(word) ? word : capitalise(word)))
-    .join(' ');
-  return capitalise(string);
-};
+// // exercise #4
+// const convertTitleCase = str => {
+//   const capitalise = str => str[0].toUpperCase() + str.slice(1);
+//   const exceptions = ['a', 'an', 'and', 'the', 'but', 'or', 'on', 'in', 'with'];
+//   const string = str
+//     .toLowerCase()
+//     .split(' ')
+//     .map(word => (exceptions.includes(word) ? word : capitalise(word)))
+//     .join(' ');
+//   return capitalise(string);
+// };
 
-console.log(convertTitleCase('Blah a blah and blah'));
-console.log(convertTitleCase('a blah and blah'));
+// console.log(convertTitleCase('Blah a blah and blah'));
+// console.log(convertTitleCase('a blah and blah'));
+
+// Coding Challenge #4
+// Julia and Kate are still studying dogs, and this time they are studying if dogs are eating too much or too little.
+
+// Eating too much means the dog's current food portion is larger than the recommended portion, and eating too little is the opposite.
+
+// Eating an okay amount means the dog's current food portion is within a range 10% above and 10% below the recommended portion (see hint).
+
+const dogs = [
+  { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
+  { weight: 8, curFood: 200, owners: ['Matilda'] },
+  { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
+  { weight: 32, curFood: 340, owners: ['Michael'] },
+];
+
+// Your tasks:
+// 1. Loop over the 'dogs' array containing dog objects, and for each dog, calculate the recommended food portion and add it to the object as a new property. Do not create a new array, simply loop over the array. Forumla: recommendedFood = weight ** 0.75 * 28. (The result is in grams of food, and the weight needs to be in kg)
+
+dogs.forEach(dog => {
+  console.log(dog.weight);
+  let recommendedFood = dog.weight ** 0.75 * 28;
+  recommendedFood;
+  console.log(recommendedFood);
+});
+
+// 2. Find Sarah's dog and log to the console whether it's eating too much or too little. Hint: Some dogs have multiple owners, so you first need to find Sarah in the owners array, and so this one is a bit tricky (on purpose)
+
+// 3. Create an array containing all owners of dogs who eat too much ('ownersEatTooMuch') and an array with all owners of dogs who eat too little ('ownersEatTooLittle').
+
+// 4. Log a string to the console for each array created in 3,like this: "Matilda and Alice and Bob's dogs eat too much!" and "Sarah and John and Michael's dogs eat too little!"
+
+// 5. Log to the console whether there is any dog eating exactly the amount of food that is recommended (just true or false)
+
+// 6. Log to the console whether there is any dog eating an okay amount of food (just true or false)
+
+// 7. Create an array containing the dogs that are eating an okay amount of food (try to reuse the condition used in 6.)
+
+// 8. Create a shallow copy of the 'dogs' arrayand sort it by recommended food portion in an ascending order (keep in mind that the portions are inside the array's objects)
+
+// Hints:
+// Use many different tools to solve these challenges, you can use the summary lecture to choose between them
+
+// Being within a range 10% above and below the recommended portion means: current > (recommended * 0.90) && current < (recommended * 1.10). Basically, the current portion should be between 90% and 110% of the recommended portion.
+
+// Test data:
+// const dogs = [
+// { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] }, { weight: 8, curFood: 200, owners: ['Matilda'] },
+// { weight: 13, curFood: 275, owners: ['Sarah', 'John'] }, { weight: 32, curFood: 340, owners: ['Michael'] },
+// ];
