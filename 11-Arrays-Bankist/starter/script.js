@@ -639,12 +639,15 @@ console.log(deposits, withdrawals);
 
 // exercise #4
 const convertTitleCase = str => {
-  const exceptions = ['a', 'an', 'the', 'but', 'or', 'on', 'in', 'with'];
-  const string = str.toLowerCase().split(' ');
-  const newString = string.forEach(word => {
-    word.slice(0, 1);
-  });
-  return newString;
+  const capitalise = str => str[0].toUpperCase() + str.slice(1);
+  const exceptions = ['a', 'an', 'and', 'the', 'but', 'or', 'on', 'in', 'with'];
+  const string = str
+    .toLowerCase()
+    .split(' ')
+    .map(word => (exceptions.includes(word) ? word : capitalise(word)))
+    .join(' ');
+  return capitalise(string);
 };
 
-console.log(convertTitleCase('Blah a blah blaweie'));
+console.log(convertTitleCase('Blah a blah and blah'));
+console.log(convertTitleCase('a blah and blah'));
