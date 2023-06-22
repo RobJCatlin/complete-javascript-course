@@ -667,13 +667,15 @@ const dogs = [
 ];
 
 // Your tasks:
+
 // 1. Loop over the 'dogs' array containing dog objects, and for each dog, calculate the recommended food portion and add it to the object as a new property. Do not create a new array, simply loop over the array. Forumla: recommendedFood = weight ** 0.75 * 28. (The result is in grams of food, and the weight needs to be in kg)
 
+const recommendedFoodWeight = weight => Math.round(weight ** 0.75 * 28);
+const foodCalc = (weight1, weight2) => {};
+
 dogs.forEach(dog => {
-  console.log(dog.weight);
-  let recommendedFood = dog.weight ** 0.75 * 28;
-  recommendedFood;
-  console.log(recommendedFood);
+  dog.foodweight = recommendedFoodWeight(dog.weight);
+  dog.owners.includes('Sarah') && foodCalc();
 });
 
 // 2. Find Sarah's dog and log to the console whether it's eating too much or too little. Hint: Some dogs have multiple owners, so you first need to find Sarah in the owners array, and so this one is a bit tricky (on purpose)
