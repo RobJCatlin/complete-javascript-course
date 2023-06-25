@@ -685,11 +685,17 @@ console.log(
 );
 
 // 3. Create an array containing all owners of dogs who eat too much ('ownersEatTooMuch') and an array with all owners of dogs who eat too little ('ownersEatTooLittle').
-const ownersEatTooMuch = dogs.filter(dog => dog.recFood < dog.curFood);
-ownersEatTooMuch.forEach(dog => {
-  console.log(dog.owners);
-});
-// console.log(ownersEatTooMuch);
+// .filter() makes a new array from the original, but only items that pass a conditional
+const ownersEatTooMuch = dogs
+  .filter(dog => dog.curFood > dog.recFood)
+  .flatMap(dog => dog.owners);
+
+const ownersEatTooLittle = dogs
+  .filter(dog => dog.curFood < dog.recFood)
+  .flatMap(dog => dog.owners);
+
+console.log(`${ownersEatTooMuch.join(' and ')}'s dog eats too much`);
+console.log(`${ownersEatTooLittle.join(' and ')}'s dog eats too little`);
 
 // const ownersEatTooLittle = dogs.filter(dog => dog.recFood > dog.curFood);
 // console.log(ownersEatTooLittle);
@@ -698,12 +704,24 @@ ownersEatTooMuch.forEach(dog => {
 
 // 5. Log to the console whether there is any dog eating exactly the amount of food that is recommended (just true or false)
 
+console.log(dogs.some(dog => dog.curFood === dog.recFood));
+
 // 6. Log to the console whether there is any dog eating an okay amount of food (just true or false)
+const checkEatingOk = dog =>
+  dog.curFood > dog.recFood * 0.9 && dog.curFood < dog.recFood * 1.1;
+
+console.log(dogs.some(checkEatingOk));
+// console.log(dogs.some(dog => checkEatingOk(dog)));
 
 // 7. Create an array containing the dogs that are eating an okay amount of food (try to reuse the condition used in 6.)
+const eatingOkAmount = dogs.filter(checkEatingOk);
+console.log(eatingOkAmount);
 
-// 8. Create a shallow copy of the 'dogs' arrayand sort it by recommended food portion in an ascending order (keep in mind that the portions are inside the array's objects)
-
+// 8. Create a shallow copy of the 'dogs' array and sort it by recommended food portion in an ascending order (keep in mind that the portions are inside the array's objects)
+const dogsSorted = dogs.slice().sort((a, b) => {
+  a.recommendedFood - b.recommendedFood;
+});
+console.log(dogsSorted);
 // Hints:
 // Use many different tools to solve these challenges, you can use the summary lecture to choose between them
 
