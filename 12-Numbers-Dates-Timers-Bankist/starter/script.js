@@ -84,7 +84,7 @@ const inputClosePin = document.querySelector('.form__input--pin');
 const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
 
-  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+  const movs = sort ? movements.slice().sort((e, b) => a - b) : movements;
 
   movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
@@ -256,6 +256,7 @@ btnSort.addEventListener('click', function (e) {
 console.log(Number.parseInt('30px', 10));
 console.log(Number.parseInt('m25', 10));
 
+// .parseFloat() method is go-to method when reading a number from a string
 console.log(Number.parseInt('    2.5    ', 10));
 console.log(Number.parseInt('2.5', 10));
 console.log(Number.parseFloat('2.5', 10));
@@ -271,6 +272,59 @@ console.log(Number.isFinite('20'));
 console.log(Number.isFinite(+'20x'));
 console.log(Number.isFinite(23 / 0));
 
-console.log(Number.isIntager(20));
-console.log(Number.isIntager(23.0));
-console.log(Number.isIntager(23 / 0));
+console.log(Number.isInteger(20));
+console.log(Number.isInteger(23.0));
+console.log(Number.isInteger(23 / 0));
+
+console.log(Math.sqrt(25));
+console.log(25 ** (1 / 2));
+console.log(8 ** (1 / 3));
+
+// Math.max() does type coersion
+console.log(Math.max(5, 18, 200, 4, 55, 99));
+console.log(Math.max(5, 18, '200', 4, 55, 99));
+console.log(Math.max(5, 18, '200px', 4, 55, 99));
+
+console.log(Math.min(6, 77, 400, 1025));
+
+// calculate the area of a circle with a 10px radius
+console.log(Math.PI * Number.parseFloat('10px') ** 2);
+
+console.log(Math.trunc(Math.random() * 6) + 1);
+
+// gives number between 0 - 1
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min) + 1) + min;
+// 0...1 -> 0...(max - min) -> min...(max - min)
+
+// console.log(randomInt(10, 15));
+// console.log(randomInt(100, 15));
+// console.log(randomInt(77, 5));
+// console.log(randomInt(1000, 159));
+
+// Rounding integers
+console.log(Math.trunc(23.3));
+
+console.log(Math.round(23.3));
+console.log(Math.round(23.6));
+
+console.log(Math.ceil(23.3));
+console.log(Math.ceil(23.6));
+
+console.log(Math.floor(23.3));
+console.log(Math.floor(23.6));
+console.log(Math.floor('23.6'));
+
+console.log(Math.trunc(23.3));
+
+console.log(Math.trunc(-23.3));
+console.log(Math.floor(-23.3));
+
+// Rounding decimals
+
+// adds up to the x number decimal places
+console.log((2.7).toFixed(0));
+console.log((2.7).toFixed(3));
+
+console.log((2.345).toFixed(2));
+console.log(+(2.345).toFixed(2));
