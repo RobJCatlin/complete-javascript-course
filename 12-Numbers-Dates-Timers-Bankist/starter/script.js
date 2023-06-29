@@ -94,7 +94,7 @@ const displayMovements = function (movements, sort = false) {
         <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-        <div class="movements__value">${mov}€</div>
+        <div class="movements__value">${mov.toFixed(2)}€</div>
       </div>
     `;
 
@@ -104,19 +104,19 @@ const displayMovements = function (movements, sort = false) {
 
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${acc.balance}€`;
+  labelBalance.textContent = `${acc.balance.toFixed(2)}€`;
 };
 
 const calcDisplaySummary = function (acc) {
   const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${incomes}€`;
+  labelSumIn.textContent = `${incomes.toFixed(2)}€`;
 
   const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `${Math.abs(out)}€`;
+  labelSumOut.textContent = `${Math.abs(out).toFixed(2)}€`;
 
   const interest = acc.movements
     .filter(mov => mov > 0)
@@ -126,7 +126,7 @@ const calcDisplaySummary = function (acc) {
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${interest}€`;
+  labelSumInterest.textContent = `${interest.toFixed(2)}€`;
 };
 
 const createUsernames = function (accs) {
@@ -206,7 +206,7 @@ btnTransfer.addEventListener('click', function (e) {
 btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
 
-  const amount = Number(inputLoanAmount.value);
+  const amount = Math.floor(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
     // Add movement
@@ -303,28 +303,104 @@ const randomInt = (min, max) =>
 // console.log(randomInt(1000, 159));
 
 // Rounding integers
-console.log(Math.trunc(23.3));
+// console.log(Math.trunc(23.3));
 
-console.log(Math.round(23.3));
-console.log(Math.round(23.6));
+// console.log(Math.round(23.3));
+// console.log(Math.round(23.6));
 
-console.log(Math.ceil(23.3));
-console.log(Math.ceil(23.6));
+// console.log(Math.ceil(23.3));
+// console.log(Math.ceil(23.6));
 
-console.log(Math.floor(23.3));
-console.log(Math.floor(23.6));
-console.log(Math.floor('23.6'));
+// console.log(Math.floor(23.3));
+// console.log(Math.floor(23.6));
+// console.log(Math.floor('23.6'));
 
-console.log(Math.trunc(23.3));
+// console.log(Math.trunc(23.3));
 
-console.log(Math.trunc(-23.3));
-console.log(Math.floor(-23.3));
+// console.log(Math.trunc(-23.3));
+// console.log(Math.floor(-23.3));
 
-// Rounding decimals
+// // Rounding decimals
 
-// adds up to the x number decimal places
-console.log((2.7).toFixed(0));
-console.log((2.7).toFixed(3));
+// // adds up to the x number decimal places
+// console.log((2.7).toFixed(0));
+// console.log((2.7).toFixed(3));
 
-console.log((2.345).toFixed(2));
-console.log(+(2.345).toFixed(2));
+// console.log((2.345).toFixed(2));
+// console.log(+(2.345).toFixed(2));
+
+// // Remainder operator - modulous
+// console.log(5 % 2);
+// console.log(5 / 2); // 5 = 2 * 2 + 1
+
+// console.log(8 % 3);
+// console.log(8 / 3); // 8 = 2 * 3 + 2
+
+// console.log(8 % 2);
+// console.log(8 % 2 === 0);
+
+// console.log(7 % 2);
+// console.log(7 / 2);
+
+// const isEven = n => n % 2 === 0;
+
+// console.log(isEven(3));
+// console.log(isEven(10));
+// console.log(isEven(2));
+// console.log(isEven(7));
+
+// labelBalance.addEventListener('click', () => {
+//   [...document.querySelectorAll('.movements__row')].forEach((row, i) => {
+//     if (i % 2 === 0) row.style.backgroundColor = 'orangered';
+//     if (i % 3 === 0) row.style.backgroundColor = 'blue';
+//   });
+// });
+
+// // 287,460,000,000
+// const diameter = 287_460_000_000;
+// console.log(diameter);
+
+// const price = 345_99;
+// console.log(price);
+// // CAN ONLY PLACE UNDERSCORES BETWEEN NUMBERS
+// const transferFee = 15_00;
+// const transferFee2 = 1_500;
+
+// const PI = 3.1415;
+// console.log(PI);
+
+// console.log(Number('230_000'));
+// console.log(parseInt('230_000'));
+
+console.log(2 ** 53 - 1);
+console.log(Number.MAX_SAFE_INTEGER);
+console.log(2 ** 53 + 1);
+console.log(2 ** 53 + 2);
+console.log(2 ** 53 + 3);
+console.log(2 ** 53 + 4);
+
+console.log(876543234567898765432345678987654345678n);
+console.log(BigInt(87654323));
+
+// Operations
+console.log(10000n + 10000n);
+console.log(98765432345678765434567890n * 234567765434567876543n);
+// console.log(Math.sqrt(16n));
+
+const huge = 34567890098765456789098n;
+const num = 23;
+// console.log(huge * num);
+console.log(huge * BigInt(num));
+
+// Exceptions
+console.log(20n > 15);
+console.log(20n === 20);
+console.log(typeof 20n);
+console.log(20n == 20);
+console.log(20n == '20');
+
+console.log(huge + ' is REALLY big');
+
+// Divisions
+console.log(10n / 3n);
+console.log(10 / 3);
