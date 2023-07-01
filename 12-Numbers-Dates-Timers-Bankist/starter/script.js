@@ -20,10 +20,10 @@ const account1 = {
     '2019-12-23T07:42:02.383Z',
     '2020-01-28T09:15:04.904Z',
     '2020-04-01T10:17:24.185Z',
-    '2020-05-08T14:11:59.604Z',
-    '2020-05-27T17:01:17.194Z',
-    '2020-07-11T23:36:17.929Z',
-    '2020-07-12T10:51:36.790Z',
+    '2023-02-05T16:33:06.386Z',
+    '2023-06-25T14:43:26.374Z',
+    '2023-06-27T18:49:59.371Z',
+    '2023-06-29T12:01:20.894Z',
   ],
   currency: 'EUR',
   locale: 'pt-PT', // de-DE
@@ -40,10 +40,10 @@ const account2 = {
     '2019-11-30T09:48:16.867Z',
     '2019-12-25T06:04:23.907Z',
     '2020-01-25T14:18:46.235Z',
-    '2020-02-05T16:33:06.386Z',
-    '2020-04-10T14:43:26.374Z',
-    '2020-06-25T18:49:59.371Z',
-    '2020-07-26T12:01:20.894Z',
+    '2023-02-05T16:33:06.386Z',
+    '2023-04-10T14:43:26.374Z',
+    '2023-06-25T18:49:59.371Z',
+    '2023-06-29T12:01:20.894Z',
   ],
   currency: 'USD',
   locale: 'en-US',
@@ -78,8 +78,28 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-/////////////////////////////////////////////////
 // Functions
+/////////////////////////////////////////////////
+
+const formatMovementDate = (date, locale) => {
+  const calcDaysPassed = (date1, date2) =>
+    Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
+
+  const daysPassed = calcDaysPassed(new Date(), date);
+  console.log(daysPassed);
+
+  if (daysPassed === 0) return `Today`;
+  if (daysPassed === 1) return `Yesterday`;
+  if (daysPassed <= 7) return `${daysPassed} days ago`;
+
+  // const day = `${date.getDate()}`.padStart(2, 0);
+  // const month = `${date.getMonth() + 1}`.padStart(2, 0);
+  // const year = date.getFullYear();
+  // return `${day}/${month}/${year}`;
+  return new Intl.DateTimeFormat(locale).format(date);
+};
+
+/////////////////////////////////////////////////
 
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
@@ -93,11 +113,7 @@ const displayMovements = function (acc, sort = false) {
 
     // good technique to loop over two arrays consecutively. using a forEach and then using the index [i] of the other array - acc.movementsDates[i]
     const date = new Date(acc.movementsDates[i]);
-    const day = `${date.getDate()}`.padStart(2, 0);
-    const month = `${date.getMonth() + 1}`.padStart(2, 0);
-    const year = date.getFullYear();
-
-    const displayDate = `${day}/${month}/${year}`;
+    const displayDate = formatMovementDate(date, acc.locale);
 
     const html = `
       <div class="movements__row">
@@ -113,10 +129,14 @@ const displayMovements = function (acc, sort = false) {
   });
 };
 
+/////////////////////////////////////////////////
+
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
   labelBalance.textContent = `${acc.balance.toFixed(2)}€`;
 };
+
+/////////////////////////////////////////////////
 
 const calcDisplaySummary = function (acc) {
   const incomes = acc.movements
@@ -140,6 +160,8 @@ const calcDisplaySummary = function (acc) {
   labelSumInterest.textContent = `${interest.toFixed(2)}€`;
 };
 
+/////////////////////////////////////////////////
+
 const createUsernames = function (accs) {
   accs.forEach(function (acc) {
     acc.username = acc.owner
@@ -149,7 +171,10 @@ const createUsernames = function (accs) {
       .join('');
   });
 };
+
 createUsernames(accounts);
+
+/////////////////////////////////////////////////
 
 const updateUI = function (acc) {
   // Display movements
@@ -171,6 +196,21 @@ currentAccount = account1;
 updateUI(currentAccount);
 containerApp.style.opacity = 100;
 
+// Experimenting API
+const now = new Date();
+const options = {
+  hour: 'numeric',
+  minute: 'numeric',
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+};
+
+const locale = navigator.language;
+console.log(locale);
+
+labelDate.textContent = new Intl.DateTimeFormat(locale, options).format(now);
+
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
   e.preventDefault();
@@ -185,16 +225,34 @@ btnLogin.addEventListener('click', function (e) {
     labelWelcome.textContent = `Welcome back, ${
       currentAccount.owner.split(' ')[0]
     }`;
+
     containerApp.style.opacity = 100;
 
-    // Create current date
+    // Create current date and time
     const now = new Date();
-    const day = `${now.getDate()}`.padStart(2, 0);
-    const month = `${now.getMonth() + 1}`.padStart(2, 0);
-    const year = now.getFullYear();
-    const hour = now.getHours();
-    const min = now.getMinutes();
-    labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min} `;
+    const options = {
+      hour: 'numeric',
+      minute: 'numeric',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+      weekday: 'long',
+    };
+    // const locale = navigator.language;
+
+    labelDate.textContent = new Intl.DateTimeFormat(
+      currentAccount.locale,
+      options
+    ).format(now);
+
+    // Create current date
+    // const now = new Date();
+    // const day = `${now.getDate()}`.padStart(2, 0);
+    // const month = `${now.getMonth() + 1}`.padStart(2, 0);
+    // const year = now.getFullYear();
+    // const hour = now.getHours();
+    // const min = now.getMinutes();
+    // labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min} `;
 
     // Clear input fields
     inputLoginUsername.value = inputLoginPin.value = '';
@@ -454,24 +512,29 @@ btnSort.addEventListener('click', function (e) {
 // console.log(new Date(3 * 24 * 60 * 60 * 1000));
 
 // Working with dates
-const future = new Date(2037, 10, 19, 15, 23);
-console.log(future);
-// only use .getFullYear(), never .getYear()
-console.log(future.getFullYear());
-console.log(future.getMonth());
-console.log(future.getDate());
-console.log(future.getDay());
-console.log(future.getHours());
-console.log(future.getMinutes());
-console.log(future.getSeconds());
-// Use .toISOString when you want to convert a date object into a string
-console.log(future.toISOString());
-console.log(future.getTime());
+// const future = new Date(2037, 10, 19, 15, 23);
+// console.log(future);
+// // only use .getFullYear(), never .getYear()
+// console.log(future.getFullYear());
+// console.log(future.getMonth());
+// console.log(future.getDate());
+// console.log(future.getDay());
+// console.log(future.getHours());
+// console.log(future.getMinutes());
+// console.log(future.getSeconds());
+// // Use .toISOString when you want to convert a date object into a string
+// console.log(future.toISOString());
+// console.log(future.getTime());
 
-console.log(new Date(2142256980000));
+// console.log(new Date(2142256980000));
 
-console.log(Date.now());
+// console.log(Date.now());
 
-// there are all the setFull... methods
-future.setFullYear(2040);
-console.log(future);
+// // there are all the setFull... methods
+// future.setFullYear(2040);
+// console.log(+future);
+
+// const calcDaysPassed = (date1, date2) =>
+//   Math.abs(date2 - date1) / (1000 * 60 * 60 * 24);
+
+// console.log(calcDaysPassed(new Date(2023, 6, 30), new Date(2023, 7, 17)));
