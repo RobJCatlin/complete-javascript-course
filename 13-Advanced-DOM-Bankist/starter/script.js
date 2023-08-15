@@ -88,7 +88,7 @@ message.style.height =
 // change custom properties using setProperty()
 // this changes the css variables in :root{}
 // could use this for dark mode?
-document.documentElement.style.setProperty('--color-primary', 'orangered');
+document.documentElement.style.setProperty('--color-primary', 'pink');
 
 // Attributes
 const logo = document.querySelector('.nav__logo');
