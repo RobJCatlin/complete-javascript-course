@@ -100,3 +100,26 @@ logo.alt = 'Beautiful minimalist logo';
 // Non-standard attribute
 console.log(logo.designer);
 console.log(logo.getAttribute('designer'));
+logo.setAttribute('company', 'bankist');
+
+console.log(logo.src);
+console.log(logo.getAttribute('src'));
+
+const link = document.querySelector('.nav__link--btn');
+
+console.log(link.href);
+console.log(link.getAttribute('href'));
+
+// data attributes
+// can get the values of data-**** attributes, but needs to be camelCase
+// data-version-number
+console.log(logo.dataset.versionNumber);
+
+// Classes
+logo.classList.add('c');
+logo.classList.remove('c');
+logo.classList.toggle('c');
+logo.classList.contains('c');
+
+// Don't use this as it will replace all class attributes with this value
+console.log((logo.className = 'example'));
