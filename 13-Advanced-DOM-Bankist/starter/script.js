@@ -149,7 +149,24 @@ btnScrollTo.addEventListener('click', e => {
   //   behavior: 'smooth',
   // });
 
+  // modern way to scroll
   section1.scrollIntoView({
     behavior: 'smooth',
   });
 });
+
+const h1 = document.querySelector('h1');
+
+const alertH1 = e => {
+  alert('addEventListener: Great! You are reading the heading 🤓');
+  // h1.removeEventListener('mouseenter', alertH1);
+};
+
+h1.addEventListener('mouseenter', alertH1);
+
+setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
+
+// old way
+// h1.onmouseenter = e => {
+//   alert('onmouseenter: Great! You are reading the heading 🤓');
+// };
