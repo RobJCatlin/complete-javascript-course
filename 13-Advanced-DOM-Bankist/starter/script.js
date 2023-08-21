@@ -251,27 +251,63 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
 //   true
 // );
 
-const h1 = document.querySelector('h1');
+// const h1 = document.querySelector('h1');
 
-// Going downwards: child
-console.log(h1.querySelectorAll('.highlight'));
-console.log(h1.childNodes);
-console.log(h1.children);
-h1.firstElementChild.style.color = 'red';
-h1.lastElementChild.style.color = 'blue';
+// // Going downwards: child
+// console.log(h1.querySelectorAll('.highlight'));
+// console.log(h1.childNodes);
+// console.log(h1.children);
+// h1.firstElementChild.style.color = 'red';
+// h1.lastElementChild.style.color = 'blue';
 
-// Going upwards: parent
-console.log(h1.parentNode);
-console.log(h1.parentElement);
+// // Going upwards: parent
+// console.log(h1.parentNode);
+// console.log(h1.parentElement);
 
-h1.closest('.header').style.background = 'var(--gradient-secondary)';
-h1.closest('h1').style.background = 'var(--gradient-primary)';
+// h1.closest('.header').style.background = 'var(--gradient-secondary)';
+// h1.closest('h1').style.background = 'var(--gradient-primary)';
 
-// Going sideways: siblings
-console.log(h1.previousElementSibling);
-console.log(h1.nextElementSibling);
+// // Going sideways: siblings
+// console.log(h1.previousElementSibling);
+// console.log(h1.nextElementSibling);
 
-console.log(h1.previousSibling);
-console.log(h1.nextSibling);
+// console.log(h1.previousSibling);
+// console.log(h1.nextSibling);
 
-console.log(h1.parentElement.children);
+// console.log(h1.parentElement.children);
+// const headers = [...h1.parentElement.children];
+// console.log(headers);
+// headers.forEach(el => {
+//   if (el !== h1) el.style.transform = 'scale(.5)';
+// });
+
+// tabbed component
+// Steps
+// 1. select all tabs, add eventListener 'click', get e.target, show/hide content
+
+const tabs = document.querySelectorAll('.operations__tab');
+// console.log(tabs);
+
+const tabsContainer = document.querySelector('.operations__tab-container');
+
+const tabsContent = document.querySelectorAll('.operations__content');
+
+tabsContainer.addEventListener('click', function (e) {
+  e.preventDefault();
+  var clicked = e.target.closest('.operations__tab');
+  console.log(clicked);
+
+  // Guard clause
+  if (!clicked) return;
+
+  tabs.forEach(el => el.classList.remove('operations__tab--active'));
+
+  // Active tab
+  clicked.classList.add('operations__tab--active');
+
+  // Active content area
+
+  // console.log(e.target.dataset.tab);
+});
+
+// console.log(btnContainer);
