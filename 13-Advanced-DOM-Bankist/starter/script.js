@@ -6,6 +6,10 @@ const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+const nav = document.querySelector('.nav');
 
 /////////////////////////////////////////////////////////////////////
 // Modal window
@@ -77,13 +81,52 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
   // Matching strategy
   if (e.target.classList.contains('nav__link')) {
     const id = e.target.getAttribute('href');
-    console.log(id);
+    // console.log(id);
     document.querySelector(id).scrollIntoView({
       behavior: 'smooth',
     });
   }
 });
 
+// tabbed component
+tabsContainer.addEventListener('click', function (e) {
+  e.preventDefault();
+  var clicked = e.target.closest('.operations__tab');
+  // Guard clause
+  if (!clicked) return;
+  // remove active classes
+  tabs.forEach(el => el.classList.remove('operations__tab--active'));
+  tabsContent.forEach(el => el.classList.remove('operations__content--active'));
+  // Active tab
+  clicked.classList.add('operations__tab--active');
+  // Active content area
+  // const tab = e.target.dataset.tab;
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
+});
+
+// Menu fade animation
+nav.addEventListener('mouseover', e => {
+  if (e.target.classList.contains('nav__link')) {
+    const link = e.target;
+    const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+    const logo = link.closest('.nav').querySelector('img');
+    siblings.forEach(el =>
+      el !== link ? (el.style.opacity = '.5') : (el.style.opacity = 1)
+    );
+  }
+});
+
+nav.addEventListener('mouseout', e => {
+  const link = e.target;
+  const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+  const logo = link.closest('.nav').querySelector('img');
+  siblings.forEach(el => {
+    el.style.opacity = '1';
+    logo.style.opacity = '1';
+  });
+});
 // console.log(document.documentElement);
 // console.log(document.head);
 // console.log(document.body);
@@ -280,34 +323,3 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
 // headers.forEach(el => {
 //   if (el !== h1) el.style.transform = 'scale(.5)';
 // });
-
-// tabbed component
-// Steps
-// 1. select all tabs, add eventListener 'click', get e.target, show/hide content
-
-const tabs = document.querySelectorAll('.operations__tab');
-// console.log(tabs);
-
-const tabsContainer = document.querySelector('.operations__tab-container');
-
-const tabsContent = document.querySelectorAll('.operations__content');
-
-tabsContainer.addEventListener('click', function (e) {
-  e.preventDefault();
-  var clicked = e.target.closest('.operations__tab');
-  console.log(clicked);
-
-  // Guard clause
-  if (!clicked) return;
-
-  tabs.forEach(el => el.classList.remove('operations__tab--active'));
-
-  // Active tab
-  clicked.classList.add('operations__tab--active');
-
-  // Active content area
-
-  // console.log(e.target.dataset.tab);
-});
-
-// console.log(btnContainer);
