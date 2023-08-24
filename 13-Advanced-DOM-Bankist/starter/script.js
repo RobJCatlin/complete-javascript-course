@@ -124,8 +124,13 @@ const handleHover = function (e) {
 
 // Passing "argument" into handler
 nav.addEventListener('mouseover', handleHover.bind(0.5));
-
 nav.addEventListener('mouseout', handleHover.bind(1));
+
+// Sticky nav
+window.addEventListener('scroll', e => {
+  console.log(window.scrollY);
+});
+
 // console.log(document.documentElement);
 // console.log(document.head);
 // console.log(document.body);
